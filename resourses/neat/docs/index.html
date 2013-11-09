@@ -1,0 +1,613 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Neat Admin Template Documentation</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;Neat Admin Template&rdquo; Documentation by &ldquo;Ernst-Andreas Krokowski&rdquo; v1.0</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;Neat Admin Template&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 07/25/2012<br>
+					By: Ernst-Andreas Krokowski<br>
+					Email: <a href="mailto:eakroko@gmail.com">eakroko@gmail.com</a>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my theme. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://themeforest.net/user/eakroko">here</a>. Thanks so much!</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		
+		<h2 id="toc" class="alt">Table of Contents</h2>
+		<ol class="alpha">
+			<li>
+				<a href="#htmlStructure">HTML Structure</a>
+				<ol>
+					<li>
+						<a href="#layout">Layouts</a>
+						<ul>
+							<li>
+								<a href="#layout-liquid">Liquid</a>
+							</li>
+							<li>
+								<a href="#layout-fixed">Fixed</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#grid">Grid-Structure</a>
+						<ul>
+							<li>
+								<a href="#grid-box">Content-box</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#topBar">Topbar</a>
+						<ul>
+							<li>
+								<a href="#topBar-logo">Name</a>
+							</li>
+							<li>
+								<a href="#topBar-search">Search</a>
+							</li>
+							<li>
+								<a href="#topBar-mini">Navigation items</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#bread">Breadcrumbs</a>
+					</li>
+					<li>
+						<a href="#nav">Navigation</a>
+						<ul>
+							<li>
+								<a href="#nav-items">Navigation items</a>
+							</li>
+							<li>
+								<a href="#nav-dropdown">Dropdown items</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#forms">Forms</a>
+						<ul>
+							<li>
+								<a href="#forms-main">Main elements</a>
+							</li>
+							<li>
+								<a href="#forms-prepend">Icon prepend and append</a>
+							</li>
+							<li>
+								<a href="#forms-counter">Textarea with counter</a>
+							</li>
+							<li>
+								<a href="#forms-uniform">Uniform style</a>
+							</li>
+							<li>
+								<a href="#forms-extended">Extended forms</a>
+							</li>
+							<li>
+								<a href="#forms-wizard">Wizard</a>
+							</li>
+							<li>
+								<a href="#forms-validation">Validation</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#tables">Tables</a>
+						<ul>
+							<li>
+								<a href="#tables-data">dataTables</a>
+							</li>
+							<li>
+								<a href="#tables-plain">Plain tables</a>
+							</li>
+							<li>
+								<a href="#tables-media">Media tables</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#interface">Interface elements</a>
+						<ul>
+							<li>
+								<a href="#interface-buttons">Buttons</a>
+							</li>
+							<li>
+								<a href="#interface-sliders">Sliders</a>
+							</li>
+							<li>
+								<a href="#interface-progress">Progress-bars</a>
+							</li>
+							<li>
+								<a href="#interface-tooltips">Tooltips</a>
+							</li>
+							<li>
+								<a href="#interface-notification">Notifications</a>
+							</li>
+							<li>
+								<a href="#interface-tabs">Tabs & Pills</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#stats">Statistics</a>
+						<ul>
+							<li>
+								<a href="#stats-mini">Quick stats</a>
+							</li>
+							<li>
+								<a href="#stats-flot">Flot statistics</a>
+							</li>
+						</ul>
+					</li>
+				</ol>
+			</li>
+			<li><a href="#cssFiles">CSS Files and Structure</a></li>
+			<li><a href="#javascript">JavaScript</a></li>
+			<li><a href="#credits">Sources and Credits</a></li>
+		</ol>
+		
+		<hr>
+		<p>For perfect understanding read this documentation from top to bottom! If you jump to specific sections without reading the before ones, you could miss information!</p>
+		
+		<h3 id="htmlStructure"><strong>A) HTML Structure</strong> - <a href="#toc">top</a></h3>
+		<h4 id="layout">Layouts</h4>
+		<p>The template comes in the liquid layout. However if you want to change it to fixed or from fixed back to liquid read below.</p>
+		<h5 id="layout-liquid">Liquid</h5>
+		<p>
+			To change from fixed to liquid layout simply rename all <code>&lt;div class="container"&gt;_CONTENT_&lt;/div&gt;</code> to <code>&lt;div class='container-fluid'&gt;_CONTENT_&lt;/div&gt;</code>.
+		</p>
+		<h5 id="layout-fixed">Fixed</h5>
+		<p>
+			To change from liquid to fixed layout simply rename all <code>&lt;div class="container-fluid"&gt;_CONTENT_&lt;/div&gt;</code> to <code>&lt;div class='container'&gt;_CONTENT_&lt;/div&gt;</code>.
+		</p>
+		<hr>
+		<h4 id="grid">Grid</h4>
+		<img src="assets/images/basic-grid.png" alt="">
+		<p>
+			Thats the basic template grid. Every file has those items. <code>style-toggler</code> and <code>style-switcher</code> are of course not in your template. Thats only for demonstration!
+		</p>
+		<h5 id="grid-box">Content box</h5>
+		<img src="assets/images/grid-row.png" alt="">
+		<p>
+			This is the code you need to use for a content box. The <code>box-head</code> contains the box's name inside <code>h3</code>.
+			The <code>box-content</code> has the actual content of that box. It has a padding by default but you can disable it with the classname <code>box-nomargin</code>.
+		</p>
+		<hr>
+		<h4 id="topBar">Topbar</h4>
+		<p>The topbar contains 3 elements. The company/template name, a searchbar and some buttons.</p>
+		<h5 id="topBar-logo">Name</h5>
+		<img src="assets/images/topbar-name.png" alt="">
+		<p>
+			To change the name simply change <code>Neat Admin Template</code> to your desired name.
+		</p>
+		<h5 id="topBar-search">Search</h5>
+		<img src="assets/images/topbar-search.png" alt="">
+		<p>
+			To give the searchbar the correct action-file change the <code>action="#"</code> to the file that handles your search. You can also add the <code>method="post/get"</code> type.
+		</p>
+		<h5 id="topBar-mini">Items</h5>
+		<img src="assets/images/topbar-mini.png" alt="">
+		<p>
+			Thats one button of the top. It's showing the <code>Pending orders</code> button. I choosed this one because it also has a dropdown that i can explain.
+		</p>
+		<p>
+			I'll start with the basic button-name. It is here on line <code>120</code>. Simply change it to your needs. Line <code>119</code> contains the fugue-icon. Head over to <a href="http://p.yusukekamiyamane.com/icons/preview/fugue.png">http://p.yusukekamiyamane.com/icons/preview/fugue.png</a> to see all of them and set the name correctly. Line <code>121</code> chose the little box on the top right corner of the button. They are from bootstrap. See more information on them here : <a href="http://twitter.github.com/bootstrap/components.html#labels">http://twitter.github.com/bootstrap/components.html#labels</a>. After the link comes the dropdown. To use it the link needs the attribute <code>data-toggle="dropdown"</code> which you can see on line <code>118</code>. It also needs the class <code>dropdown-toggle</code>. The actual dropdown needs the class <code>dropdown-menu</code> and if you whish the custom style it has on the topbar you need to add the class <code>custom custom-dark</code>. The class <code>custom-dark</code> is used to create a dark-shadow. All list-items need the class <code>custom</code> to have the original template style. On line <code>126</code> is the items description. One line below is the date and the user. The user has a popover which is activated through the class <code>pover</code>. If you use that class you need to set the two attributes <code>data-title</code> and <code>data-content</code> which are used for the popover. The container <code>action</code> contains the possible actions for that row. They have a tooltip which is activated through <code>tip</code> and this tooltip contains the attributes content of <code>title</code>. Inside that action link is again a fugue icon.
+		</p>
+		<hr>
+		<h4 id="bread">Breadcrumbs</h4>
+		<img src="assets/images/bread.png" alt="">
+		<p>
+			Breadcrumbs are a great way to show the user where he currently is on the backend. On some deep navigations some user are confused and therefore are breadcrumbs.
+		</p>
+		<p>
+			Simply add more list-items which contain the link to the page. The first item doesn't contain a description because it displays the little white house icon.
+		</p>
+		<hr>
+		<h4 id="nav">Navigation</h4>
+		<img src="assets/images/nav.png" alt="">
+		<p>Thats the basic structure of the navigation.</p>
+		<h5 id="nav-items">Items</h5>
+		<img src="assets/images/nav-item.png" alt="">
+		<p>
+			Items are easily added to the navigation. Simply add one <code>li</code> (list-item) and use a link inside. The link has a div (line <code>194</code>) with the class <code>ico</code> which contains the bootstrap icon. On line <code>195</code> is the item's name and one line below is the bootstrap-label to show that this section has something new! If you don't need that label - delete it. Class <code>active</code> indicates that you are on this page (highlighted dark on the navigation).
+		</p>
+		<h5 id="nav-dropdown">Dropdown</h5>
+		<p>
+			If you want to let the dropdown expand on mouse-hover you have to add the class <code>on-hover</code> to the link-element. Then it should have the classes <code>toggle-collapsed on-hover</code>.
+		</p>
+		<img src="assets/images/nav-dropdown.png" alt="">
+		<p>
+			The dropdown structure is pretty similar to the ones of the topbar. The link needs the class <code>toggle-collapsed</code> and has on line <code>210</code> instead of the label, you should've read about before, a little arrow showing down. 
+			On line <code>212</code> begins the actual collapsed navigation. It needs the class <code>collapsed-nav</code> to work properly. If it needs to be closed by default use the class <code>closed</code>. Inside this collapsed navigation are some list-items with links.
+		</p>
+		<hr>
+		<h4 id="forms">Forms</h4>
+		<img src="assets/images/form.png" alt="">
+		<p>
+			The basic structure of forms is just some normal html. There are different types of forms (horizontal, vertical etc..). Use the classes provided by bootstrap to set the style : <a href="http://twitter.github.com/bootstrap/base-css.html#forms">http://twitter.github.com/bootstrap/base-css.html#forms</a>. The <code>fieldset</code> is optional.
+		</p>
+		<h5 id="forms-main">Main</h5>
+		<img src="assets/images/form-main.png" alt="">
+		<p>
+			Just a basic input element surrounded by some containers. Those containers are used to show the user if there is is an error (more on that later). The label is on the horizontal form on the left side. The container with the class <code>controls</code> contains everything on the right side. 
+		</p>
+		<img src="assets/images/form-checkbox.png" alt="">
+		<p>
+			Here are some checkboxes. Every checkbox is surrounded by an label. This is used to provide the funtionality that if the user clicks on the description of that checkbox, the checkbox will be checked. Otherwise it will only be checked if the user clicks directly on the checkbox. I recommend using the shown method!
+		</p>
+		<img src="assets/images/form-error.png" alt="">
+		<p>
+			Here you can see the 3 states a form can has. Error, Warning and Success. They are shown at the bootstrap page you should've visited before. Just use the class of the state and Text and borders will have different colors (yellow,red or green) depending on the state. The span with the class <code>help-inline</code> is the message you provide the user to show them what is wrong.
+		</p>
+		<img src="assets/images/form-size.png" alt="">
+		<p>
+			Thats a big one... But quite simple. It only shows every size an input element can have. First, it can have the size of the grid (spanX). There are also 3 different, static sizes: <code>input-small</code>, <code>input-xlarge</code> and <code>input-medium</code>. You can read more in this at bootstrap.
+		</p>
+		<h5 id="forms-prepend">Prepend & Append</h5>
+		<img src="assets/images/form-prepend.png" alt="">
+		<p>
+			This screenshot shows an input element with appended and prepended icons. Just surround the input tag with a container with the class <code>input-prepend</code> (only prepend), <code>input-append</code> (only append) or <code>input-prepend input-append</code> for appended and prepended icons. It can contain icons or simply text to prepend/append. On line <code>379</code> it contains a bootstrap icon and on line <code>387</code> it contains a dollar sign as prepend and <code>.00</code> as append. That's a nice and user-friendly way to show them what is expected to be inserted.
+		</p>
+		<h5 id="forms-counter">Textarea counter</h5>
+		<img src="assets/images/form-counter.png" alt="">
+		<p>
+			The textarea counter is a nice way to prevent the content to get too big and long. Add the class <code>counter</code> and the attribute <code>data-max</code> (maximum content length) to use this feature.
+		</p>
+		<h5 id="forms-uniform">Uniform</h5>
+		<img src="assets/images/form-uniform.png" alt="">
+		<p>
+			Uniform is a nice jQuery plugin which transforms the style of form elements. It also has different themes which can be viewed here : <a href="http://uniformjs.com/#themes">http://uniformjs.com/#themes</a>. That site also contains all needed information about uniform. To use uniform in the Neat Admin Template simply add the class <code>uniform</code>.
+		</p>
+		<h5 id="forms-extended">Extended elements</h5>
+		<p>
+			Now comes the part which explains how to provide the user great plugins and form elements.
+		</p>
+		<img src="assets/images/form-extended-tags.png" alt="">
+		<p>
+			Tags need the class <code>tagsinput</code>. On the screenshot it also has the tag <code>span12</code> which only sets the width of that input element. The value attribute is used for the default or already saved values. Just divide every tag with a , and they will be formatted as single items.  
+		</p>
+		<img src="assets/images/form-extended-search.png" alt="">
+		<p>
+			You have selects with very many elements, such as countries, or languages? No problem for chosen. Add the class <code>cho</code> to your select element and it will get a live search engine and will be styled greatly. <a href="http://harvesthq.github.com/chosen/">http://harvesthq.github.com/chosen/</a>
+		</p>
+		<img src="assets/images/form-extended-multiple.png" alt="">
+		<p>
+			Maybe a user can select more than one country or one language. Than you need to use the attribute <code>multiple</code>. The Chosen select will transform into an multi-selectable element with good styling. I would recommend this for every multi-select, even without many elements. The default multi-select is not really user-friendly. <a href="http://harvesthq.github.com/chosen/">http://harvesthq.github.com/chosen/</a>
+		</p>
+		<img src="assets/images/form-extended-spinner.png" alt="">
+		<p>
+			The spinner elements needs to be wrapped in a container with an form size class. <code>spanX</code> or <code>input-mini</code> etc... That needs to be done to give the spinner the correct size.
+		</p>
+		<img src="assets/images/form-extended-datepicker.png" alt="">
+		<p>
+			The datepicker is styled for bootstrap to perfeclty fit to the design. You only need the class <code>datepick</code> and it will be available after the input gets focused. <a href="http://www.eyecon.ro/bootstrap-datepicker">http://www.eyecon.ro/bootstrap-datepicker</a>
+		</p>
+		<img src="assets/images/form-extended-timepicker.png" alt="">
+		<p>
+			The timepicker is also styled for bootstrap and has a great style. Use the class <code>timepicker</code> to transform the input. You can choose between the default dropdown and a modal. This needs to be set in javascript. <a href="http://www.github.com/jdewit/bootstrap-timepicker">http://www.github.com/jdewit/bootstrap-timepicker</a>
+		</p>
+		<img src="assets/images/form-extended-masks.png" alt="">
+		<p>
+			This is the screenshot of the input-masks. I think input-masks provide a great
+			and user-friendly input element and they also pre-validate every input. Very helpful for phone numbers, serial numbers etc.. You can EASILY add your own masked inputs. It is also done via javascript (no real javascript knowledge needed). <a href="https://github.com/RobinHerbots/jquery.inputmask">https://github.com/RobinHerbots/jquery.inputmask</a>
+		</p>
+		<img src="assets/images/form-extended-editor.png" alt="">
+		<p>
+			Here you can see the WYSIWYG editor and the Multiple file upload element. To use this editor add the class <code>cleditor</code> to your <code>textarea</code>. You want to know more about Cleditor ? <a href="http://premiumsoftware.net/cleditor/">http://premiumsoftware.net/cleditor/</a>.
+		</p>
+		<p>
+			The multi file upload is set up with just one div-container (line <code>758</code>). Use the class <code>plupload</code> and it will automatically transform. Very useful for many files and also for large files! You can specify if you want to use flash/html5/etc.. for the upload! This can be very handy. More info here: <a href="http://www.plupload.com/">http://www.plupload.com/</a>.
+		</p>
+		<h5 id="forms-wizard">Wizard</h5>
+		<p>
+			Wizards are the best way to provide the user a neatly ordered form. Nearly every e-commerce uses wizards (eg. Checkout). If you have forms which would fit well into a wizard, use it! It is easy to setup and just awesome.
+		</p>
+		<img src="assets/images/form-wizard.png" alt="">
+		<p>
+			Use the class <code>wizard</code> on your form element. Inside it you need seperate container with the class <code>step</code>. Every container should have his own <code>id</code>. Inside that will be the form elements. At the end comes the next/back control elements via input elements (reset/submit). They are NOT put into the step containers! You can easily add validation to those seperate form elements. Just use the classes needed for validation (more info below). More information for that wizard can be found here: <a href="http://thecodemine.org/">http://thecodemine.org/</a>.
+		</p>
+		<h5 id="forms-validation">Validation</h5>
+		<img src="assets/images/form-validation.png" alt="">
+		<p>
+			I also included Metadata. You can simply add validation with metadata classes. See examples on the validation homepage or study my sourcecode.
+		</p>
+		<p>
+			Here is a little overview of the possible validation. It is kinda simple to implement. You only have to add some classes to the specific input elements. I won't explain everything here, because there is a better documentation here : 
+			<a href="http://docs.jquery.com/Plugins/Validation">http://docs.jquery.com/Plugins/Validation</a>. Read it and use it!
+		</p>
+		<hr>
+		<h4 id="tables">Tables</h4>
+		<h5 id="tables-data">dataTables</h5>
+		<img src="assets/images/tables-data.png" alt="">
+		<p>
+			Simply add the class <code>dataTable</code> to transform it into a dataTable. You don't know what dataTables are? <a href="http://datatables.net/">http://datatables.net/</a> here are all information needed. dataTables are very usefull for LARGE amount of information. Otherwise the page would load very slowly, but dataTables only display some rows to provide the needed speed.
+		</p>
+		<img src="assets/images/tables-data-nohead.png" alt="">
+		<p>
+			If you want to disable the search and limit for the dataTable than you have to add the class <code>dataTables-noheader</code>.
+		</p>
+		<img src="assets/images/tables-data-noheadnofoot.png" alt="">
+		<p>
+			Same like above - if you dont need pagination and only want to provide a simple way to sort columns, use the classes <code>dataTable-nohead</code> and <code>dataTable-nofooter</code>. It will automatically hide those features.
+		</p>
+		<h5 id="tables-plain">Plain</h5>
+		<img src="assets/images/tables-plain.png" alt="">
+		<p>
+			Tables need to be opened like this to look like in the template! The box-content container, about which you already read before should have the class <code>box-nomargin</code> so that the table fit perfectly.
+		</p>
+		<img src="assets/images/tables-plain-condensed.png" alt="">
+		<p>
+			If you need some more tiny tables use the class <code>table-condensed</code>. It will lower the padding inside the table.
+		</p>
+		<img src="assets/images/tables-plain-checkboxhead.png" alt="">
+		<p>
+			To use checkoxes add this to the <code>thead</code> section. You also need to have that class on the checkbox. Otherwise jQuery and the check_all function won't work.
+		</p>
+		<img src="assets/images/tables-plain-checkboxbody.png" alt="">
+		<p>
+			Use this in the <code>tbody</code> on every row to use the checkboxes!
+		</p>
+		<h5 id="tables-media">Media</h5>
+		<img src="assets/images/tables-media.png" alt="">
+		<p>
+			In media tables, pictures get a round border and a bit of padding. You can see that on the template. Use the class <code>table-media</code> to get this feature.
+		</p>
+		<img src="assets/images/tables-media-preview.png" alt="">
+		<p>
+			You want to have a preview like on the gallery page? Just add the class <code>preview</code> on the link tag. On hover the image inside <code>href</code> will be in the preview!
+		</p>
+		<hr>
+		<h4 id="interface">Interface elements</h4>
+		<h5 id="interface-buttons">Buttons</h5>
+		<img src="assets/images/button-quicktask.png" alt="">
+		<p>
+			Quicktasks are often in demand for backends. They provide the probably best way to customize every page and to get often used tasks to the specific page. They fit very well in a dashboard for common tasks for example. But also on other pages they are nice to have (look at sample pages).
+		</p>
+		<p>
+			To use them you need to create an <code>ul</code> with the class <code>quicktasks</code>. Inside that element are all list-items and they contain the actual link.
+			Those links have an icon from the PC.de Essen iconset. You find that on the Buttons&Icons page with a preview. Change the img <code>src</code> to the image you need and change the text inside the <code>span</code> to set the right description for that item.
+		</p>
+		<img src="assets/images/button-default.png" alt="">
+		<p>
+			The default bootstrap buttons. I won't say much about it. They have a great documentation here: <a href="http://twitter.github.com/bootstrap/base-css.html#buttons">http://twitter.github.com/bootstrap/base-css.html#buttons</a>.
+		</p>
+		<img src="assets/images/button-size.png" alt="">
+		<p>
+			This are the default bootstrap sizes for buttons.
+		</p>
+		<img src="assets/images/button-dropdown.png" alt="">
+		<p>
+			Just a sample markup for a button-dropdown.
+		</p>
+		<img src="assets/images/button-round.png" alt="">
+		<p>
+			I use more square buttons on that template. If you want to use the default round bootstrap buttons, you can! Add the class <code>btn-round</code> to set the button to the default border-radius.
+		</p>
+		<img src="assets/images/button-custom-dropdown.png" alt="">
+		<p>
+			Here you can see the default markup for a custom styled dropdown. This dropdown is like the dropdown on the head or at the box-head actions dropdown on dashboard or on plain table page. It has default bootstrap markup but uses the class <code>custom</code> on the <code>dropdown-menu</code>.
+		</p>
+		<img src="assets/images/button-custom-colors.png" alt="">
+		<p>
+			I implemented a total of 32 custom colors for buttons !!! Here is the basic structure of them. It's nearly the same like the default bootstrap buttons. Just add the class of my custom color to it <code>btn-grayX / btn-blueX ....</code>. X stand for 1-8.
+		</p>
+		<h5 id="interface-sliders">Sliders</h5>
+		<img src="assets/images/slider-default.png" alt="">
+		<p>
+			The default slider only needs 2 containers. <code>slider</code> and <code>slide</code>. Below you find some more screenshots for sliders and their customization.
+		</p>
+		<img src="assets/images/slider-value.png" alt="">
+		<p>
+			If you need to see the current value of the slider use the container <code>amount</code> and it will be automatically filled with the current value.
+		</p>
+		<img src="assets/images/slider-minmax.png" alt="">
+		<p>
+			To specify the min and max-value of the slider I implemented <code>data</code> attributes. Use <code>data-min</code> and <code>data-max</code> for it.
+		</p>
+		<img src="assets/images/slider-steps.png" alt="">
+		<p>
+			Same like above. If you need a different stepping value use <code>data-step</code>.
+		</p>
+		<img src="assets/images/slider-range.png" alt="">
+		<p>
+			You need more than a one-way slider? Use the range slider to get it. Set the <code>data-range</code> attribute to true. If you want to use this rangeslider you also need the 2 other <code>data</code> attributes: <code>data-rangestart</code> and <code>data-rangestop</code>. It's just the default starting value of those 2 points.
+		</p>
+		<img src="assets/images/slider-range-minmax.png" alt="">
+		<p>
+			Just another example of a ranged slider with min and max value setted up.
+		</p>
+		<h5 id="interface-progress">ProgressBars</h5>
+		<img src="assets/images/progress-default.png" alt="">
+		<p>
+			All four available default bootstrap styles are shown here. More on those progress-bars can be read here : <a href="http://twitter.github.com/bootstrap/components.html#progress">http://twitter.github.com/bootstrap/components.html#progress</a>
+		</p>
+		<img src="assets/images/progress-size.png" alt="">
+		<p>
+			I implemented 3 new progress-bar sizes. <code>progress-large</code>, <code>progress-mega</code> and <code>progress-mini</code> can be used if you want something different and maybe just another size.
+		</p>
+		<img src="assets/images/progress-round.png" alt="">
+		<p>
+			Same with the buttons - I use the more square version as default for progress-bars. If you want to use the default bootstrap round style use <code>progress-round</code>.
+		</p>
+		<img src="assets/images/progress-active.png" alt="">
+		<p>
+			If your progress bar should have the moving stripes which you can see on the progress-bar page or on the bootstrap page use the class <code>active</code>. The class <code>progress-preview</code> is only needed for demonstration.
+		</p>
+		<img src="assets/images/progress-striped.png" alt="">
+		<p>
+			To set stripes as background use the class <code>progress-striped</code>.
+		</p>
+		<img src="assets/images/progress-custom-colors.png" alt="">
+		<p>
+			I implemented 4 custom colors for bootstrap progress-bars. <code>progress-inverse</code>, <code>progress-lightgreen</code>, <code>progress-darkgrey</code> and <code>progress-blue</code> are the classes you need to know for it.
+		</p>
+		<h5 id="interface-tooltips">Tooltips</h5>
+		<img src="assets/images/tooltip-default.png" alt="">
+		<p>
+			Every element on the page can have a tooltip! Simply add the class <code>tip</code> and set the attribute <code>title</code>.
+		</p>
+		<img src="assets/images/tooltip-side.png" alt="">
+		<p>
+			To set the placement of the tooltip to a specific side use the data-attribute <code>data-placement</code>.
+		</p>
+		<h5 id="interface-notification">Notifications</h5>
+		<img src="assets/images/notification-alert.png" alt="">
+		<p>
+			Here you can see the default bootstrap alerts. Read more about it here : <a href="http://twitter.github.com/bootstrap/components.html#alerts">http://twitter.github.com/bootstrap/components.html#alerts</a>.
+		</p>
+		<img src="assets/images/notification-growl.png" alt="">
+		<p>
+			If you want a growl-like notification add the class <code>opengrowl</code> and use the data-attribute <code>data-content</code> to set the content. You can also set a header for that growl-like notification. To do so add the class <code>hasheader</code> and use the data-attribute <code>data-header</code>.
+		</p>
+		<img src="assets/images/notification-modal.png" alt="">
+		<p>
+			Sample markup of a modal window. More in this can be read here : <a href="http://twitter.github.com/bootstrap/javascript.html#modals">http://twitter.github.com/bootstrap/javascript.html#modals</a>.
+		</p>
+		<img src="assets/images/notification-popover.png" alt="">
+		<p>
+			Sample markup of a popover. Read here more : <a href="http://twitter.github.com/bootstrap/javascript.html#popovers">http://twitter.github.com/bootstrap/javascript.html#popovers</a>.
+		</p>
+		<p>
+			Popovers can also be triggered manually with a click. Just use the data-attribute <code>data-trigger="manual"</code>.
+		</p>
+		<h5 id="interface-tabs">Tabs & Pills</h5>
+		<img src="assets/images/tabs.png" alt="">
+		<p>
+			To create tabs in the box-head you first have to add the class <code>tabs</code> to the container with the class <code>box-head</code>. After the <code>h3</code> element in the box-head comes the navigation which contains the tabs. More on this can be read here, it has the SAME markup : <a href="http://twitter.github.com/bootstrap/components.html#navs">http://twitter.github.com/bootstrap/components.html#navs</a>. The <code>box-content</code> now needs another container which has the class <code>tab-content</code>. That container has for every tab a seperate container. This container needs to have the id which the link in the navigation refers to.
+		</p>
+		<img src="assets/images/tabs-pills.png" alt="">
+		<p>
+			Same like above, but now with pills.
+		</p>
+		<img src="assets/images/tabs-buttons.png" alt="">
+		<p>
+			Here is a sample markup of greatly styled buttons in the box-head. You need the container with the class <code>actions</code> after the <code>h3</code> element in the <code>box-head</code>. Inside the div.actions container is the navigation. Inside the navigation are the little buttons. On line <code>400-402</code> you see a simple button without dropdown. The icon has a tooltip and a fugue icon. On line <code>406-419</code> is a button with the custom styled dropdown of bootstrap. The markup is the same like in the topbar but it doesn't have the <code>custom-dark</code> class because the box-shadow is lighter here.
+		</p>
+		<hr>
+		<h4 id="stats">Statistics</h4>
+		<h5 id="stats-mini">Quick stats</h5>
+		<img src="assets/images/flot-quick.png" alt="">
+		<p>
+			The quick stats are done with Peity. It's a jQuery plugin which provides easy to implement, small statistics. First you have to create a navigation with the class <code>quickstats</code>. Inside that navigation is for every statistic a seperate item-list. That item-list contains two div containers. The first one contains the chart and the second one the two other text-information. To customize the chart you have to set the content of the div to ur values. <code>data-color</code> and <code>data-stroke</code> are used for the color of that statistic. Simply insert your custom hex-code in it. <code>data-type</code> is used to determine which type of statistic you want to get generated. Possible types are <code>line</code>, <code>pie</code> and <code>bar</code>.
+		</p>
+		<h5 id="stats-flot">Flot</h5>
+		<img src="assets/images/flot-line.png" alt="">
+		<img src="assets/images/flot-bar.png" alt="">
+		<img src="assets/images/flot-pie.png" alt="">
+		<img src="assets/images/flot-live.png" alt="">
+		<p>
+			The basic markup for a big statistic is shown here. Use <code>flot-line</code>, <code>flot-bar</code>, <code>flot-pie</code> or <code>flot-live</code> to get the desired statistic. They need to be handled in jQuery. You can read more on flot-statistics and how to customize them here : <a href="http://code.google.com/p/flot/">http://code.google.com/p/flot/</a>.
+		</p>
+		<hr>
+		<h3 id="cssFiles"><strong>B) CSS Files and Structure</strong> - <a href="#toc">top</a></h3>
+		<p>
+			Many CSS files are included. Most of them are for jQuery plugins and should only be changed if you know what you are doing.
+		</p>
+		<p>
+			These files are from the template: 
+		</p>
+		<ul>
+			<li>style.css</li>
+			<li>blue.css</li>
+			<li>red.css</li>
+			<li>green.css</li>
+		</ul>
+		<p>
+			<code>style.css</code> is for the default gray color. Well.. the other files are pretty self explanatory.
+		</p>
+		<hr>
+		<h3 id="javascript"><strong>C) Javascript</strong> - <a href="#toc">top</a></h3>
+		<p>
+			This theme has 2 javascript files.
+		</p>
+		<ul>
+			<li>custom.js</li>
+			<li>error.js</li>
+		</ul>
+		<p>
+			The first one contains everything the page needs, the second one contains everything the error-pages and login-page needs. You should NOT change the second one.
+		</p>
+		<p>
+			You can change some things of the first one, for example plugin-code. It is split into 3 sections. <code>FOR DEMONSTRATION ONLY</code>, <code>DO NOT CHANGE</code> and <code>PLUGINS</code>. The <code>FOR DEMONSTRATION ONLY</code> part can be deleted of course! Everything inside <code>PLUGINS</code> can be changed but know what you are doing, otherwise you will delete some features!
+		</p>
+		<hr>
+		<h3 id="credits"><strong>D) Sources and Credits</strong> - <a href="#toc">top</a></h3>
+		<h4>HTML Framework</h4>
+		<ul>
+			<li>
+				<a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>
+			</li>
+		</ul>
+		<h4>Used jQuery plugins</h4>
+		<ul>
+			<li><a href="http://jquery.com/">Jquery</a></li>
+			<li><a href="http://jqueryui.com/">Jquery UI</a></li>
+			<li><a href="http://code.google.com/p/flot/">Flot</a></li>
+			<li><a href="http://datatables.net/">DataTables</a></li>
+			<li><a href="https://github.com/btburnett3/jquery.ui.spinner">UI Spinner</a></li>
+			<li><a href="http://xoxco.com/projects/code/tagsinput/">TagsInput</a></li>
+			<li><a href="http://stanlemon.net/pages/jgrowl">jGrowl</a></li>
+			<li><a href="https://github.com/RobinHerbots/jquery.inputmask">InputMask</a></li>
+			<li><a href="http://fancybox.net/">FancyBox</a></li>
+			<li><a href="http://premiumsoftware.net/cleditor/">ClEditor</a></li>
+			<li><a href="http://harvesthq.github.com/chosen/">Chosen</a></li>
+			<li><a href="http://twitter.github.com/bootstrap/">Bootstrap</a></li>
+			<li><a href="http://jdewit.github.com/bootstrap-timepicker/">Bootstrap timepicker</a></li>
+			<li><a href="http://www.eyecon.ro/bootstrap-datepicker/">Bootstrap datepicker</a></li>
+			<li><a href="http://www.plupload.com/">PLUpload</a></li>
+			<li><a href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">Validation</a></li>
+			<li><a href="http://www.thecodemine.org">Wizard</a></li>
+			<li><a href="http://roy-jin.appspot.com/jsp/textareaCounter.jsp">Textarea counter</a></li>
+			<li><a href="http://benpickles.github.com/peity/">Peity</a></li>
+			<li><a href="http://www.bitstorm.org/jquery/color-animation/">Color animation</a></li>
+			<li><a href="http://uniformjs.com/">Uniform</a></li>
+			<li><a href="http://malsup.com/jquery/form/">Form</a></li>
+			<li><a href="http://daverupert.com">Fittext</a></li>
+		</ul>
+		<h4>Used Icons</h4>
+		<ul>
+			<li><a href="http://glyphicons.com/">Bootstrap Glyphicons</a></li>
+			<li><a href="http://p.yusukekamiyamane.com/">Fugue icons</a></li>
+			<li><a href="http://pc.de/icons/">PC.de Essen</a></li>
+		</ul>
+		<hr>
+
+
+
+		<p>Once again, thank you so much for purchasing this theme. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the themes on ThemeForest, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p> 
+		
+		<p class="append-bottom alt large"><strong>Ernst-Andreas Krokowski</strong></p>
+		<p><a href="#toc">Go To Table of Contents</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
