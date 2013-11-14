@@ -12,8 +12,7 @@
  * @copyright     Copyright 2013, Novenitos
  * @version       TutorApp v 0.0.1
  */
-
-$(document).on('ready', init);
+ 
 /*
  * @description Funcion de inicio que manda llamar todas las funciones principales en el index
  * @access public 

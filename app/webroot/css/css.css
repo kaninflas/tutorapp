@@ -6,4 +6,18 @@
         Estilos de TutorApp.
 */
 
+/* styles for iconCls */
+.x-icon-tickets {
+    background-image: url('ext/shared/icons/fam/tickets.png');
+}
+.x-icon-subscriptions {
+    background-image: url('ext/shared/icons/fam/subscriptions.png');
+}
+.x-icon-users {
+    background-image: url('ext/shared/icons/fam/group.png');
+}
+.x-icon-templates {
+    background-image: url('ext/shared/icons/fam/templates.png');
+}
+
 
