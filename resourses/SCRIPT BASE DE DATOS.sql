@@ -61,7 +61,7 @@ CREATE  TABLE IF NOT EXISTS `tutorapp`.`tutorias` (
   `id_tutor` INT NULL ,
   `fecha_asignacion` DATE NULL ,
   `num_sesion` VARCHAR(45) NULL ,
-  `fecha_sesion` VARCHAR(45) NULL ,
+  `fecha_sesion` DATE NULL ,
   `acuerdos` TEXT NULL ,
   `id_alumno` VARCHAR(45) NULL ,
   `estatus` ENUM('Inicio','Seguimiento','Termino') NULL ,
