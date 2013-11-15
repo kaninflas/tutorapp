@@ -1,5 +1,6 @@
 # User specific & automatically generated files #
 #################################################
+/app/temp/
 
 # OS generated files #
 ######################
@@ -8,3 +9,4 @@
 ._*
 .Spotlight-V100
 .Trashes
+*.log
