@@ -1,6 +1,6 @@
 # User specific & automatically generated files #
 #################################################
-app/temp/
+app/tmp/
 
 #netbeans ignore personal stuff
 nbproject
