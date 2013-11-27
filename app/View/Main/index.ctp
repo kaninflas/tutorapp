@@ -26,7 +26,7 @@
 
 <script>  
     var tabs = 0;      
-   Ext.require(['*']);   
+   //Ext.require(['*']);   
    //---------------------------------------------------------------
    //  Cargamos un store con todos los datos de la tabla dpa
    //---------------------------------------------------------------
@@ -275,7 +275,7 @@
             region: "north",
             id : "toolbar-area",
             xtype: 'panel',
-            html: ["<a href=\"#\">Cerrar Sesión</a>"],
+            html: ["<a href='<?php echo $this->html->url("/users/logout"); ?>'>Cerrar Sesión</a>"],
             height: 20
         },
 

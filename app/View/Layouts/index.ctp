@@ -42,16 +42,16 @@ $description = __d('cake_dev', 'TutorApp');
 
         echo $this->Html->meta('icon',$this->Html->url('/img/logo.png'));
 
-        echo $this->Html->css('ext/shared/example');
+       /* echo $this->Html->css('ext/shared/example');
         echo $this->Html->css('ext/shared/ux/portal');
-        echo $this->Html->css('ext/shared/ux/GroupTabPanel');
+        echo $this->Html->css('ext/shared/ux/GroupTabPanel*/
         echo $this->Html->css('ext/ext-theme-neptune/ext-theme-neptune-all-debug');
         echo $this->Html->css('css');
 
-        echo $this->Html->script('ext/ext-all-dev');
+        echo $this->Html->script('ext/ext-all-debug');
         echo $this->Html->script('ext/ext-theme-neptune/build/ext-theme-neptune');
         
-        echo $this->Html->script('ext/shared/examples.js');
+      //  echo $this->Html->script('ext/shared/examples.js');
         echo $this->Html->script('js');
 
         ?> 
@@ -64,8 +64,8 @@ $description = __d('cake_dev', 'TutorApp');
             Ext.Loader.setConfig({
                 enabled:true,
                 paths:{         
-                    'Ext.ux':  GLOBAL_PATH + 'js/ext/src/ux/',
-                    'Ext.app': GLOBAL_PATH + 'js/ext/classes/'
+                    'Ext.ux':  GLOBAL_PATH + 'js/ext/src/ux/'
+                   // 'Ext.app': GLOBAL_PATH + 'js/ext/classes/'
                 }
             });
         </script>       

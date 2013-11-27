@@ -217,19 +217,26 @@
  * the cake shell command: cake schema create Sessions
  *
  */
-	Configure::write('Session', array(
-		'defaults' => 'php'
-	));
+	/*Configure::write('Session', array(
+		'defaults' => 'cake'
+	));*/
+        
+        
+        Configure::write('Session', array(
+            'defaults' => 'cake',
+            'cookie' => 'tutorapp',
+            'timeout' => 4320 //3 days
+        ));
 
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'DYhGAndrez93b0qyUnipoliSiJfIxfs2guVoUubWwvniR2G0FgaC9mi');
+	Configure::write('Security.salt', 'DYhGAndrez93b0qyUnipoliSiJfIxfs2guVoUubWwvnisR2G0FgaC9mi');
 
 /**
  * A random numeric string (digits only) used to encrypt/decrypt strings.
  */
-	Configure::write('Security.cipherSeed', '768593096573325109453542496749683645');
+	Configure::write('Security.cipherSeed', '76859309657333225109453542496749683645');
 
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
@@ -346,7 +353,7 @@
 $engine = 'File';
 
 // In development mode, caches should expire quickly.
-$duration = '+999 days';
+$duration = '+1 days';
 if (Configure::read('debug') > 0) {
 	$duration = '+10 seconds';
 }
