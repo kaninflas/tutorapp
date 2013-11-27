@@ -79,7 +79,20 @@
                     dataIndex   : 'id_usuario',  
                     width       :  55,               
                 },               
-            ]            
+            ],
+             dockedItems : [{
+                xtype   : 'toolbar',
+                items   : [{
+                    
+                    text    : 'Agregar',
+                    scope   : this,
+                    handler : function(){  
+                        <?php  echo $this->requestAction('Main/alta_dpa',array('return'))?>//pedimos la ventana del DPA que se encuentra en otra vista
+                        vtnAltaDPA.show();   //como ya esta hecha la peticion a la vista ahora la abrimos con el mismo nombre que tiene                                    
+                    }
+                }]
+            }],
+                        
     }); 
     //---------------------------------------------------------------
    //  Cargamos un store con todos los datos de la tabla tutores
@@ -370,7 +383,7 @@
                                 {
                                     Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de DPA registrados');
                                     var contenedor=Ext.getCmp('main');                                    
-                                    contenedor.add(gAlumnos);    
+                                    contenedor.add(gDPA);    
                                 }
                             }
                         },
