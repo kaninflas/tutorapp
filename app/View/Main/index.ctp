@@ -33,17 +33,38 @@
    var dpa = Ext.create('Ext.data.Store', {         
         storeId: 'dpa',      
         autoLoad: true,
+        autoSync: true,
+        pageSize:20,    
         fields: ['id', 'nombre','primer_apellido','segundo_apellido','id_usuario'],
         proxy: {
             type: 'ajax',
             api:{
-              read: '<?php echo $this->Html->url(array("controller" => "Main","action" => "dpa"));?>',
+              read      : '<?php echo $this->Html->url('/Main/dpa')?>',
+              destroy   : '<?php echo $this->Html->url('/Main/borrar/DPA')?>'
             },
             reader: {
                 type: 'json',
                 root: 'items'
+            },
+            writer: {
+                type: 'json'
             }
-        }
+        },
+        listeners: {
+            write: function(store, operation){
+            var record = operation.getRecords()[0],
+            name = Ext.String.capitalize(operation.action),
+            verb;
+
+            if (name == 'Destroy') {
+                record = operation.records[0];
+                verb = 'eliminado';
+                dpa.load();
+            } 
+            Ext.Msg.alert('Operacion exitosa', "DPA " + verb + " correctamente");
+
+            }
+        }     
     });
    //---------------------------------------------------------------
    //  Creamos un grid que muestre los DPA
@@ -77,8 +98,28 @@
                 {
                     header      : 'Id usuario',  
                     dataIndex   : 'id_usuario',  
-                    width       :  55,               
-                },               
+                    width       :  100,               
+                }, 
+                {
+                    xtype   : 'actioncolumn',
+                    width   :  100,
+                    header  : '',
+                    items   : 
+                    [
+                        {                            
+                            icon   : '../tutorapp/app/webroot/img/delete.png',  
+                            tooltip: 'Eliminar DPA',                            
+                            handler:function(grid, rowIndex, colIndex) {
+                                Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de eliminar esto de manera permanente?', function(btn){
+                                    if(btn == 'yes'){
+                                        var renglon = grid.getStore().getAt(rowIndex);
+                                        dpa.remove(renglon);
+                                    }
+                                });
+                            }
+                        }
+                    ]
+                }              
             ],
              dockedItems : [{
                 xtype   : 'toolbar',
@@ -104,7 +145,7 @@
         proxy: {
             type: 'ajax',
             api:{
-              read: '<?php echo $this->Html->url(array("controller" => "Main","action" => "tutores"));?>',
+              read: '<?php echo $this->Html->url('/Main/tutores');?>',
             },
             reader: {
                 type: 'json',
@@ -160,7 +201,7 @@
         proxy: {
             type: 'ajax',
             api:{
-              read: '<?php echo $this->Html->url(array("controller" => "Main","action" => "usuarios"));?>',
+              read: '<?php echo $this->Html->url('/Main/usuarios');?>',
             },
             reader: {
                 type: 'json',
@@ -219,7 +260,7 @@
         proxy: {
             type: 'ajax',
             api:{
-              read: '<?php echo $this->Html->url(array("controller" => "Main","action" => "alumnos"));?>',
+              read: '<?php echo $this->Html->url('/Main/alumnos');?>',
             },
             reader: {
                 type: 'json',

@@ -102,7 +102,22 @@ class MainController extends AppController {
    }
    function alta_dpa(){//funcion INDISPENSABLE que llama a la vista que genera la ventana para alta del dpa
 
-   }     
+   }    
+
+   function borrar($modelo){
+    //Funcion para borrar datos, dependiendo del modelo
+    $raw='';
+    $httpContent = fopen('php://input', 'r');
+      while ($kb = fread($httpContent, 1024)) {
+           $raw .= $kb;
+      }
+    fclose($httpContent);  
+    $params = json_decode($raw); 
+        $this->$modelo->delete(array('id'=>$params->id));
+        $respuesta['msj']='Eliminacion completa';
+        $respuesta['success'] = true;
+        print_r(json_encode($respuesta));exit;
+  }
 
 }
 
