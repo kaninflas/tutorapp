@@ -73,7 +73,7 @@
             verticalScrollerType: 'paginggridscroller',
             title: 'DPA',
             store: dpa,
-            closable: true,            
+            closable: false,            
             columns: [
                 {
                     header      : 'Id',  
@@ -141,11 +141,13 @@
    var tutores = Ext.create('Ext.data.Store', {         
         storeId: 'tutores',      
         autoLoad: true,
+        autoSync:true,
         fields: ['id', 'nombre','primer_apellido','segundo_apellido','id_usuario'],
         proxy: {
             type: 'ajax',
             api:{
-              read: '<?php echo $this->Html->url('/Main/tutores');?>',
+              read      : '<?php echo $this->Html->url('/Main/tutores');?>',
+              destroy   : '<?php echo $this->Html->url('/Main/borrar/Tutores')?>'
             },
             reader: {
                 type: 'json',
@@ -160,7 +162,7 @@
             verticalScrollerType: 'paginggridscroller',
             title: 'Tutores',
             store: tutores,
-            closable: true,            
+            closable: false,            
             columns: [
                 {
                     header      : 'Id',  
@@ -186,8 +188,41 @@
                     header      : 'Id usuario',  
                     dataIndex   : 'id_usuario',  
                     width       :  55,               
-                },               
-            ]            
+                }, 
+                {
+                    xtype   : 'actioncolumn',
+                    width   :  100,
+                    header  : '',
+                    items   : 
+                    [
+                        {                            
+                            icon   : '../tutorapp/app/webroot/img/delete.png',  
+                            tooltip: 'Eliminar Tutor',                            
+                            handler:function(grid, rowIndex, colIndex) {
+                                Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de eliminar esto de manera permanente?', function(btn){
+                                    if(btn == 'yes'){
+                                        var renglon = grid.getStore().getAt(rowIndex);
+                                        tutores.remove(renglon);
+                                    }
+                                });
+                            }
+                        }
+                    ]
+                }              
+            ],
+             dockedItems : [{
+                xtype   : 'toolbar',
+                items   : [{
+                    
+                    text    : 'Agregar',
+                    scope   : this,
+                    handler : function(){  
+                        <?php  echo $this->requestAction('Main/alta_tutor',array('return'))?>//pedimos la ventana del DPA que se encuentra en otra vista
+                        vtnAltaTutor.show();   //como ya esta hecha la peticion a la vista ahora la abrimos con el mismo nombre que tiene                                    
+                    }
+                }]
+            }],              
+                        
     }); 
   
 
@@ -216,7 +251,7 @@
             verticalScrollerType: 'paginggridscroller',
             title: 'Usuarios',
             store: usuarios,
-            closable: true,            
+            closable: false,            
             columns: [
                 {
                     header      : 'Id',  
@@ -256,11 +291,13 @@
    var alumnos = Ext.create('Ext.data.Store', {         
         storeId: 'alumnos',      
         autoLoad: true,
+        autoSync: true,
         fields: ['id', 'nombre','primer_apellido','segundo_apellido','carrera','matricula','cuatrimestre','id_usuario'],
         proxy: {
             type: 'ajax',
             api:{
               read: '<?php echo $this->Html->url('/Main/alumnos');?>',
+              destroy   : '<?php echo $this->Html->url('/Main/borrar/Alumnos')?>'
             },
             reader: {
                 type: 'json',
@@ -278,7 +315,7 @@
             verticalScrollerType: 'paginggridscroller',
             title   : 'Alumnos',
             store   : alumnos, 
-            closable: true,          
+            closable: false,          
             columns: [
                 {
                     header      : 'Id',  
@@ -315,7 +352,38 @@
                     dataIndex   : 'cuatrimestre', 
                     width       :  70                
                 },
-            ],       
+                {
+                    xtype   : 'actioncolumn',
+                    width   :  100,
+                    header  : '',
+                    items   : 
+                    [
+                        {                            
+                            icon   : '../tutorapp/app/webroot/img/delete.png',  
+                            tooltip: 'Eliminar Alumno',                            
+                            handler:function(grid, rowIndex, colIndex) {
+                                Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de eliminar esto de manera permanente?', function(btn){
+                                    if(btn == 'yes'){
+                                        var renglon = grid.getStore().getAt(rowIndex);
+                                        alumnos.remove(renglon);
+                                    }
+                                });
+                            }
+                        }
+                    ]
+                }              
+            ],
+             dockedItems : [{
+                xtype   : 'toolbar',
+                items   : [{                    
+                    text    : 'Agregar',
+                    scope   : this,
+                    handler : function(){  
+                        <?php  echo $this->requestAction('Main/alta_alumno',array('return'))?>//pedimos la ventana del alumno que se encuentra en otra vista
+                        vtnAltaAlumno.show();   //como ya esta hecha la peticion a la vista ahora la abrimos con el mismo nombre que tiene                                    
+                    }
+                }]
+            }],     
         });
    
     Ext.onReady(function(){    
@@ -388,7 +456,7 @@
                             {
                                 click:function()
                                 {
-                                    Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de Alumnos registrados');                                    
+                                    Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de Alumnos registrados');
                                     var contenedor=Ext.getCmp('main');                                    
                                     contenedor.add(gAlumnos);                                   
                                 }

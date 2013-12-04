@@ -84,6 +84,9 @@ class MainController extends AppController {
     print_r(json_encode($arrResp));
     exit;
   }
+   function alta_dpa(){//funcion INDISPENSABLE que llama a la vista que genera la ventana para alta del dpa
+
+   }  
   function dpa_crear(){
     $datos = $_POST;
       $arrDatos = array(
@@ -99,9 +102,6 @@ class MainController extends AppController {
         $respuesta['msg']   = "Datos guardados";
         print_r(json_encode($respuesta));
       exit;          
-   }
-   function alta_dpa(){//funcion INDISPENSABLE que llama a la vista que genera la ventana para alta del dpa
-
    }    
 
    function borrar($modelo){
@@ -118,6 +118,49 @@ class MainController extends AppController {
         $respuesta['success'] = true;
         print_r(json_encode($respuesta));exit;
   }
+   function alta_tutor(){
+
+   }  
+  function tutor_crear(){
+    $datos = $_POST;
+      $arrDatos = array(
+            'nombre'      => $datos['nombre'],//tomamos el campo directamiente de los datos transferidos atraves el post 
+            'primer_apellido'   => $datos['primer_apellido'],//es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
+            'segundo_apellido'  => $datos['segundo_apellido']
+        );  
+      //Aqui guardamos el renglon
+       $this->Tutores->create();//creamos un regnlon vacio para
+         $this->Tutores->save($arrDatos);//posteriormente guardar ahi los datos del array que generamos
+
+          $respuesta['success'] = true;
+        $respuesta['msg']   = "Datos guardados";
+        print_r(json_encode($respuesta));
+      exit;          
+   }   
+   function alta_alumno(){
+
+   }  
+  function alumno_crear(){
+    $datos = $_POST;
+      $arrDatos = array(
+            'nombre'      => $datos['nombre'],//tomamos el campo directamiente de los datos transferidos atraves el post 
+            'primer_apellido'   => $datos['primer_apellido'],//es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
+            'segundo_apellido'  => $datos['segundo_apellido'],
+            'carrera'  => $datos['carrera'],
+            'matricula'  => $datos['matricula'],
+            'cuatrimestre'  => $datos['cuatrimestre']
+        );  
+      //Aqui guardamos el renglon
+       $this->Alumnos->create();//creamos un regnlon vacio para
+         $this->Alumnos->save($arrDatos);//posteriormente guardar ahi los datos del array que generamos
+
+          $respuesta['success'] = true;
+        $respuesta['msg']   = "Datos guardados";
+        print_r(json_encode($respuesta));
+      exit;          
+   }  
+
+  
 
 }
 
