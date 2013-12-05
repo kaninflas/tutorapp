@@ -32,4 +32,16 @@ App::uses('Model', 'Model');
  * @package       app.Model
  */
 class AppModel extends Model {
+
+	/**
+	 * @desc Quito el ScriptTag para que se puedan leer los scripts
+	 * 
+	 * @return string      
+	 * @access public     
+	 */
+	function removeScript($out){
+            $out = str_replace('<script>','',$out); 
+            $out = str_replace('</script>','',$out); 
+            return $out;
+	}
 }

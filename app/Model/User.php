@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @class Model
  *
@@ -32,7 +31,7 @@ class User extends AppModel {
         ),
         'rol' => array(
             'valid' => array(
-                'rule' => array('inList', array('admin', 'dpa', 'tutor', 'alumno')),
+                'rule' => array('inList', array('admin', 'dpa', 'tutor', 'alumno','Por Asignar')),
                 'message' => 'Ingrese un rol válido',
                 'allowEmpty' => false
             )
@@ -55,5 +54,3 @@ class User extends AppModel {
     }
 
 }
-
-?>

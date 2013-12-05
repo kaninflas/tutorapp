@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @class Controller/UsersController
  *
@@ -12,48 +13,32 @@
  * @version       TutorApp v 0.0.1
  */
 class UsersController extends AppController {
-    
+
+    var $uses = array(
+        'AppModel',
+        'User'
+    );
+
     public function beforeFilter() {
         parent::beforeFilter();
-        //$this->Auth->allow('add');
+        $this->Auth->allow('add','login');
     }
     
-    /*public function login() {
-        if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                return $this->redirect($this->Auth->redirect());
-            }
-            $this->Session->setFlash(__('Invalid username or password, try again'));
-        }
-    }*/
-
     public function login() {
         if ($this->request->is('post')) {
-        	/*$logi = array();
-        	$logi['User'] = $this->data; 
-        	print_r($this->data);
-        	print_r('login: '.$this->Auth->login($this->data));
-        	exit;*/
-           // $this->Auth->logout();
-            
-            if ( $this->Auth->login() ) {                
-                //echo '{"success" : true, responseText": "' . $out . '"}';
-                
-                return $this->redirect($this->Auth->redirectUrl());
-                //$out=  $this->requestAction($this->Auth->redirectUrl(), array('return'));
-                //$out = $this->AppModel->removeScript($out);
-                //echo '{"success" : true, "responseText": "' . $out . '"}';
-                //echo $out;
-                //exit;
-            }
-            $this->Session->setFlash(__('Invalid username or password, try again'));
-            // else{                
-            //     echo '{"success" : false, "responseText": "Usuario o password no válido, por favor intente uevamente"}';
-            //     exit;
-            // }
-
-        }             
-        $this->layout = 'index'; 
+            if ($this->Auth->login()) {
+                echo '{"success" : true}';
+                exit;
+            }             
+            echo "Usuario o password no válido, por favor intente nuevamente";
+     
+        }
+        
+        $this->layout = (!isset($_GET["Layout"]))? 'index' : '';
+        
+        if($this->Auth->loggedIn()){
+            $this->render('/Main/index');
+        }
     }
 
     public function logout() {
@@ -73,15 +58,18 @@ class UsersController extends AppController {
         $this->set('user', $this->User->read(null, $id));
     }
 
-    public function add() {
+    public function add() {        
+        $this->layout = "";
         if ($this->request->is('post')) {
             $this->User->create();
             $this->request->data['User']['fecha'] = date('Y-m-d H:i:s');
             if ($this->User->save($this->request->data)) {
-                $this->Session->setFlash(__('El usuario ha sido guardado'));
-                return $this->redirect(array('action' => 'index'));
+                //$this->Session->setFlash(__('El usuario ha sido guardado'));
+                echo '{"success" : true}';
+                exit;
             }
-            $this->Session->setFlash(__('El usuario no pudo ser guardado. Por favor intente nuevamente'));
+            //$this->Session->setFlash(__('El usuario no pudo ser guardado. Por favor intente nuevamente'));
+            echo "El usuario no pudo ser guardado. Intente nuevamente";
         }
     }
 
@@ -116,6 +104,5 @@ class UsersController extends AppController {
         $this->Session->setFlash(__('El usuario no pudo ser guardado'));
         return $this->redirect(array('action' => 'index'));
     }
-}
 
-?>
+}
