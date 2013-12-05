@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @class Model
  *
@@ -16,7 +17,8 @@
 App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
 
 class User extends AppModel {
-    public $name='User';
+
+    public $name = 'User';
     public $useTable = 'users';
     public $validate = array(
         'username' => array(
@@ -33,7 +35,7 @@ class User extends AppModel {
         ),
         'rol' => array(
             'valid' => array(
-                'rule' => array('inList', array('admin', 'dpa', 'tutor', 'alumno','Por Asignar')),
+                'rule' => array('inList', array('admin', 'dpa', 'tutor', 'alumno', 'Por Asignar')),
                 'message' => 'Ingrese un rol válido',
                 'allowEmpty' => false
             )
@@ -48,11 +50,26 @@ class User extends AppModel {
     );
 
     public function beforeSave($options = array()) {
+        //Hasheo el password antes de guardarlo a la BD
         if (isset($this->data[$this->alias]['password'])) {
             $passwordHasher = new SimplePasswordHasher();
             $this->data[$this->alias]['password'] = $passwordHasher->hash($this->data[$this->alias]['password']);
         }
-        return true;
+        
+        //Reviso que el usuario no exista antes de guardarlo
+        $opts = array(
+            'conditions' => array(
+                'or' => array(
+                    'username' => $this->data[$this->alias]['username'],
+                    'correo' =>   $this->data[$this->alias]['correo']
+                )
+            )
+        );  
+        $out =$this->find('first', $opts);
+        if (empty($out)) {
+            return true;
+        }else
+            return false;
     }
 
 }

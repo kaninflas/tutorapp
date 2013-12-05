@@ -69,7 +69,7 @@ class UsersController extends AppController {
                 exit;
             }
             //$this->Session->setFlash(__('El usuario no pudo ser guardado. Por favor intente nuevamente'));
-            echo "El usuario no pudo ser guardado. Intente nuevamente";
+            echo "El usuario o correo ya están registrados, intente con otro";
         }
     }
 
