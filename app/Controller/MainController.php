@@ -137,9 +137,7 @@ class MainController extends AppController {
         print_r(json_encode($respuesta));
       exit;          
    }   
-   function alta_alumno(){
-
-   }  
+   function alta_alumno(){}  
   function alumno_crear(){
     $datos = $_POST;
       $arrDatos = array(
@@ -163,7 +161,10 @@ class MainController extends AppController {
     $this->User->id=$id;
     $this->User->saveField('activo','1');          
   } 
-
+  function vdpa(){}
+  function vusuarios(){}
+  function valumnos(){}
+  function vtutores(){}
   
 
 }
