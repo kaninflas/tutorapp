@@ -158,7 +158,11 @@ class MainController extends AppController {
         $respuesta['msg']   = "Datos guardados";
         print_r(json_encode($respuesta));
       exit;          
-   }  
+   } 
+   function activar($id){  //funcion para activar un usuario 
+    $this->User->id=$id;
+    $this->User->saveField('activo','1');          
+  } 
 
   
 
