@@ -22,7 +22,7 @@
  * @package       app/Views
  * @subpackage    app/View/index
 */
-?>
+?>      
 
 <script>  
     var tabs = 0;      
