@@ -225,7 +225,7 @@
         Configure::write('Session', array(
             'defaults' => 'cake',
             'cookie' => 'tutorapp',
-            'timeout' => 4320 //3 days
+            'timeout' => 600 
         ));
 
 /**
