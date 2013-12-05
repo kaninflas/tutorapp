@@ -22,261 +22,10 @@
  * @package       app/Views
  * @subpackage    app/View/index
 */
-?>      
-
+?>
 <script>  
     var tabs = 0;      
    //Ext.require(['*']);   
-   //---------------------------------------------------------------
-   //  Cargamos un store con todos los datos de la tabla dpa
-   //---------------------------------------------------------------
-   var dpa = Ext.create('Ext.data.Store', {         
-        storeId: 'dpa',      
-        autoLoad: true,
-        fields: ['id', 'nombre','primer_apellido','segundo_apellido','id_usuario'],
-        proxy: {
-            type: 'ajax',
-            api:{
-              read: '<?php echo $this->Html->url(array("controller" => "Main","action" => "dpa"));?>',
-            },
-            reader: {
-                type: 'json',
-                root: 'items'
-            }
-        }
-    });
-   //---------------------------------------------------------------
-   //  Creamos un grid que muestre los DPA
-   //---------------------------------------------------------------
-    var gDPA= Ext.create('Ext.grid.Panel', {
-            verticalScrollerType: 'paginggridscroller',
-            title: 'DPA',
-            store: dpa,
-            closable: true,            
-            columns: [
-                {
-                    header      : 'Id',  
-                    dataIndex   : 'id',   
-                    width       :  55,               
-                },
-                {
-                    header      : 'Nombre',  
-                    dataIndex   : 'nombre',   
-                    width       :  150,               
-                },                
-                {
-                    header      : 'Apellido Paterno',  
-                    dataIndex   : 'primer_apellido',  
-                    width       :  150,                
-                },
-                {
-                    header      : 'Apellido Materno',  
-                    dataIndex   : 'segundo_apellido', 
-                    width       :  150,                
-                },
-                {
-                    header      : 'Id usuario',  
-                    dataIndex   : 'id_usuario',  
-                    width       :  55,               
-                },               
-            ],
-             dockedItems : [{
-                xtype   : 'toolbar',
-                items   : [{
-                    
-                    text    : 'Agregar',
-                    scope   : this,
-                    handler : function(){  
-                        <?php  echo $this->requestAction('Main/alta_dpa',array('return'))?>//pedimos la ventana del DPA que se encuentra en otra vista
-                        vtnAltaDPA.show();   //como ya esta hecha la peticion a la vista ahora la abrimos con el mismo nombre que tiene                                    
-                    }
-                }]
-            }],
-                        
-    }); 
-    //---------------------------------------------------------------
-   //  Cargamos un store con todos los datos de la tabla tutores
-   //---------------------------------------------------------------
-   var tutores = Ext.create('Ext.data.Store', {         
-        storeId: 'tutores',      
-        autoLoad: true,
-        fields: ['id', 'nombre','primer_apellido','segundo_apellido','id_usuario'],
-        proxy: {
-            type: 'ajax',
-            api:{
-              read: '<?php echo $this->Html->url(array("controller" => "Main","action" => "tutores"));?>',
-            },
-            reader: {
-                type: 'json',
-                root: 'items'
-            }
-        }
-    });
-   //---------------------------------------------------------------
-   //  Creamos un grid que muestre los Tutores
-   //---------------------------------------------------------------
-    var gTutores= Ext.create('Ext.grid.Panel', {
-            verticalScrollerType: 'paginggridscroller',
-            title: 'Tutores',
-            store: tutores,
-            closable: true,            
-            columns: [
-                {
-                    header      : 'Id',  
-                    dataIndex   : 'id',   
-                    width       :  55,               
-                },
-                {
-                    header      : 'Nombre',  
-                    dataIndex   : 'nombre',   
-                    width       :  150,               
-                },                
-                {
-                    header      : 'Apellido Paterno',  
-                    dataIndex   : 'primer_apellido',  
-                    width       :  150,                
-                },
-                {
-                    header      : 'Apellido Materno',  
-                    dataIndex   : 'segundo_apellido', 
-                    width       :  150,                
-                },
-                {
-                    header      : 'Id usuario',  
-                    dataIndex   : 'id_usuario',  
-                    width       :  55,               
-                },               
-            ]            
-    }); 
-  
-
-   //---------------------------------------------------------------
-   //  Cargamos un store con todos los datos de la tabla usuarios
-   //---------------------------------------------------------------
-   var usuarios = Ext.create('Ext.data.Store', { 
-      storeId: 'usuarios',      
-      autoLoad: true,
-        fields: ['id', 'username','password','rol','correo','fecha','activo'],
-        proxy: {
-            type: 'ajax',
-            api:{
-              read: '<?php echo $this->Html->url(array("controller" => "Main","action" => "usuarios"));?>',
-            },
-            reader: {
-                type: 'json',
-                root: 'items'
-            }
-        }
-    });
-   //---------------------------------------------------------------
-   //  Creamos un grid que muestre los usuarios
-   //---------------------------------------------------------------
-    var gUsuarios= Ext.create('Ext.grid.Panel', {
-            verticalScrollerType: 'paginggridscroller',
-            title: 'Usuarios',
-            store: usuarios,
-            closable: true,            
-            columns: [
-                {
-                    header      : 'Id',  
-                    dataIndex   : 'id',   
-                    width       :  55,               
-                },
-                {
-                    header      : 'Nombre Usuario',  
-                    dataIndex   : 'username',   
-                    width       :  150,               
-                },                
-                {
-                    header      : 'Tipo Usuario',  
-                    dataIndex   : 'rol',  
-                    width       :  150,                
-                },
-                {
-                    header      : 'E-mail',  
-                    dataIndex   : 'correo', 
-                    width       :  250,                
-                },
-                {
-                    header      : 'Fecha de registro',  
-                    dataIndex   : 'fecha',  
-                    width       :   200,               
-                },
-                {
-                    header      : 'Estatus',  
-                    dataIndex   : 'activo', 
-                    width       :  150                
-                },
-            ]            
-    }); 
-    //---------------------------------------------------------------
-   //  Cargamos un store con todos los datos de la tabla alumnos
-   //---------------------------------------------------------------
-   var alumnos = Ext.create('Ext.data.Store', {         
-        storeId: 'alumnos',      
-        autoLoad: true,
-        fields: ['id', 'nombre','primer_apellido','segundo_apellido','carrera','matricula','cuatrimestre','id_usuario'],
-        proxy: {
-            type: 'ajax',
-            api:{
-              read: '<?php echo $this->Html->url(array("controller" => "Main","action" => "alumnos"));?>',
-            },
-            reader: {
-                type: 'json',
-                root: 'items'
-            }
-        }
-    });
-
-
-
-   //---------------------------------------------------------------
-   //  Creamos un grid que muestre los alumnos
-   //---------------------------------------------------------------
-    var gAlumnos = Ext.create('Ext.grid.Panel', {
-            verticalScrollerType: 'paginggridscroller',
-            title   : 'Alumnos',
-            store   : alumnos, 
-            closable: true,          
-            columns: [
-                {
-                    header      : 'Id',  
-                    dataIndex   : 'id',   
-                    width       :  55,               
-                },
-                {
-                    header      : 'Matricula ',  
-                    dataIndex   : 'matricula',   
-                    width       :  150,               
-                },  
-                {
-                    header      : 'Nombre ',  
-                    dataIndex   : 'nombre',   
-                    width       :  150,               
-                },                
-                {
-                    header      : 'Apellido Paterno',  
-                    dataIndex   : 'primer_apellido',  
-                    width       :  150,                
-                },
-                {
-                    header      : 'Apellido Materno',  
-                    dataIndex   : 'segundo_apellido', 
-                    width       :  150,                
-                },
-                {
-                    header      : 'Carrera',  
-                    dataIndex   : 'carrera',  
-                    width       :   150,               
-                },
-                {
-                    header      : 'Cuatrimestre',  
-                    dataIndex   : 'cuatrimestre', 
-                    width       :  70                
-                },
-            ],       
-        });
-   
     Ext.onReady(function(){    
     var viewport = new Ext.Viewport({
         layout: "border",
@@ -332,6 +81,7 @@
                                 {
                                     Ext.getCmp('instrucciones').setText('Seleccione a los usuarios que desee activar al dar click sobre ellos');
                                     var contenedor=Ext.getCmp('main');                                    
+                                    <?php  echo $this->requestAction('Main/vusuarios',array('return'))?>
                                     contenedor.add(gUsuarios);                                    
                                 }
                             }
@@ -347,8 +97,9 @@
                             {
                                 click:function()
                                 {
-                                    Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de Alumnos registrados');                                    
-                                    var contenedor=Ext.getCmp('main');                                    
+                                    Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de Alumnos registrados');
+                                    var contenedor=Ext.getCmp('main'); 
+                                    <?php  echo $this->requestAction('Main/valumnos',array('return'))?>                                   
                                     contenedor.add(gAlumnos);                                   
                                 }
                             }
@@ -365,7 +116,8 @@
                                 click:function()
                                 {
                                     Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de Tutores registrados');
-                                    var contenedor=Ext.getCmp('main');                                    
+                                    var contenedor=Ext.getCmp('main'); 
+                                    <?php  echo $this->requestAction('Main/vtutores',array('return'))?>                                   
                                     contenedor.add(gTutores);                                    
                                 }
                             }
@@ -383,7 +135,9 @@
                                 {
                                     Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de DPA registrados');
                                     var contenedor=Ext.getCmp('main');                                    
+                                    <?php  echo $this->requestAction('Main/vdpa',array('return'))?>
                                     contenedor.add(gDPA);    
+
                                 }
                             }
                         },
