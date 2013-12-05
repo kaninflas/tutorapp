@@ -111,7 +111,7 @@
                             add.submit({ 
                                 //scripts: true,
                                 success: function(form, action){ 
-                                    Ext.Msg.alert('Gracias', 'Usuario Guardado');                                
+                                    //Ext.Msg.alert('Gracias', 'Usuario Guardado');                                
                                     win.close();
                                     Ext.Ajax.request({
                                         url: GLOBAL_PATH,

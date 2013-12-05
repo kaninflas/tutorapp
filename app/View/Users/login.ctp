@@ -139,11 +139,7 @@
                     text: 'Login', 
                     handler: function(){ 
                         login.submit({ 
-                            //scripts: true,
                             success: function(form, action){ 
-                                Ext.Msg.alert('Success', 'Logged In');
-                                //console.log(form);
-                                //console.log(action); 
                                 //remember user
                                 if(Ext.getCmp('recordarUsuario').getValue()){
                                     Ext.util.Cookies.set("rem_user",Ext.getCmp('username').getValue(""));                                                                                                
@@ -160,14 +156,10 @@
                                     
                                 Ext.Ajax.request({
                                     url: GLOBAL_PATH + 'Main/index',
-                                    method: 'GET',                                   
-                                    //scripts: true,
+                                    method: 'GET',       
                                     success: function(response){
-                                        //console.log(response);
                                         var body = Ext.getBody();
                                         body.update(response.responseText,true);
-                                        /*var tmpFunc = new Function(response.responseText);
-                                        tmpFunc();*/
                                     },  
                                     failure: function(response){
                                         console.log("error: " + response.responseText);
