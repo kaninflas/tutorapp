@@ -1,6 +1,7 @@
 # User specific & automatically generated files #
 #################################################
 app/tmp/
+app/config/database
 
 #netbeans ignore personal stuff
 nbproject
