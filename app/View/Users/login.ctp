@@ -23,7 +23,8 @@
  */
 ?>          
 
-<script >
+<script>
+    
     Ext.QuickTips.init(); 
     Ext.onReady(function(){ 
         var login = Ext.create('Ext.form.Panel',{ 
