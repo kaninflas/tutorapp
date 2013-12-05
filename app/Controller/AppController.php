@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Application level Controller
  *
@@ -31,23 +32,15 @@ App::uses('Controller', 'Controller');
  * @package		app.Controller
  * @link		http://book.cakephp.org/2.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller {	
+class AppController extends Controller {
 
-
-	/*public $components = array(
-	        'Session',
-	        'Auth' => array(
-	            'loginRedirect' =>  array('controller' => 'Main' , 'action' => 'index'),
-	            'logoutRedirect' => array('controller' => 'Users', 'action' => 'login', 'Login'),
-	        )
-	);*/
-
-	public function beforeFilter() {
-	    //$this->Auth->allow('index', 'view');
-	}
-
-
-
+    public $components = array(
+        'Session',
+        'Auth' => array(
+            'loginRedirect' => array('controller' => 'Main', 'action' => 'index', 'Home'),
+            'logoutRedirect' => array('controller' => 'Users', 'action' => 'login', 'Login')
+        )
+    );
 
 
 }
