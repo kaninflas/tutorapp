@@ -24,7 +24,11 @@
 */
 ?>
 <script>  
-    var tabs = 0;      
+    var activo_usuario  =false; 
+    var activo_alumno   =false;
+    var activo_tutor    =false;
+    var activo_dpa      =false;
+    var activo_asignar  =false;
    //Ext.require(['*']);   
     Ext.onReady(function(){    
     var viewport = new Ext.Viewport({
@@ -79,10 +83,16 @@
                             {
                                 click:function()
                                 {
+                                    
                                     Ext.getCmp('instrucciones').setText('Seleccione a los usuarios que desee activar al dar click sobre ellos');
-                                    var contenedor=Ext.getCmp('main');                                    
-                                    <?php  echo $this->requestAction('Main/vusuarios',array('return'))?>
-                                    contenedor.add(gUsuarios);                                    
+                                    var contenedor=Ext.getCmp('main');
+                                    if(!activo_usuario)     
+                                    {                               
+                                        <?php  echo $this->requestAction('Main/vusuarios',array('return'))?>
+                                        contenedor.add(gUsuarios); 
+                                        contenedor.getLayout().setActiveItem(gUsuarios);                                   
+                                        activo_usuario=true;
+                                    }
                                 }
                             }
                         },
@@ -97,10 +107,15 @@
                             {
                                 click:function()
                                 {
-                                    Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de Alumnos registrados');
-                                    var contenedor=Ext.getCmp('main'); 
-                                    <?php  echo $this->requestAction('Main/valumnos',array('return'))?>                                   
-                                    contenedor.add(gAlumnos);                                   
+                                     Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de Alumnos registrados');
+                                     var contenedor=Ext.getCmp('main'); 
+                                       
+                                    if(!activo_alumno){                                        
+                                        <?php  echo $this->requestAction('Main/valumnos',array('return'))?>
+                                        contenedor.add(gAlumnos);
+                                        contenedor.getLayout().setActiveItem(gAlumnos);                                   
+                                        activo_alumno=true;
+                                    }
                                 }
                             }
                         },
@@ -117,8 +132,13 @@
                                 {
                                     Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de Tutores registrados');
                                     var contenedor=Ext.getCmp('main'); 
-                                    <?php  echo $this->requestAction('Main/vtutores',array('return'))?>                                   
-                                    contenedor.add(gTutores);                                    
+                                    if(!activo_tutor)
+                                    {
+                                        <?php  echo $this->requestAction('Main/vtutores',array('return'))?>
+                                        contenedor.add(gTutores); 
+                                        contenedor.getLayout().setActiveItem(gTutores);                                   
+                                        activo_tutor=true;
+                                    }
                                 }
                             }
                         },
@@ -134,6 +154,30 @@
                                 click:function()
                                 {
                                     Ext.getCmp('instrucciones').setText('Altas, Bajas y modificaciones de DPA registrados');
+                                    var contenedor=Ext.getCmp('main'); 
+                                    
+                                    if(!activo_dpa)
+                                    {
+                                        <?php  echo $this->requestAction('Main/vdpa',array('return'))?>
+                                        contenedor.add(gDPA); 
+                                        contenedor.getLayout().setActiveItem(gDPA);   
+                                        activo_dpa=true;
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            xtype    :'button',
+                            text     :'Asignación Tutores',
+                            scale    :'large',                            
+                            maxWidth : 350,
+                            minWidth : 310, 
+                            margin   : 20,
+                            listeners:
+                            {
+                                click:function()
+                                {
+                                    Ext.getCmp('instrucciones').setText('Asignar alumnos a los tutores, Carta de Asignación');
                                     var contenedor=Ext.getCmp('main');                                    
                                     <?php  echo $this->requestAction('Main/vdpa',array('return'))?>
                                     contenedor.add(gDPA);    
