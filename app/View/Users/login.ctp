@@ -68,7 +68,7 @@
                 {
                     id: 'recordarUsuario',
                     xtype: 'checkboxfield',     
-                    name: 'data[User][recordarUsuario]',
+                    name: 'recordarUsuario',
                     boxLabel: 'Recordar Usuario',
                     hideLabel: true,                        
                     style: 'margin-left:105px;'
@@ -76,7 +76,7 @@
                 {
                     id: 'recordarPassword',
                     xtype: 'checkboxfield',     
-                    name: 'data[User][recordarPassword]',
+                    name: 'recordarPassword',
                     boxLabel: 'Recordar Password',
                     hideLabel: true,                         
                     style: 'margin-left:105px;'
@@ -186,7 +186,7 @@
         if (Ext.util.Cookies.get("rem_pswd")!=null){
             Ext.getCmp('password').setValue(Ext.util.Cookies.get("rem_pswd"));
             Ext.getCmp('recordarPassword').setValue(true);
-        } 
+        }
     }); //Ext.OnReady*/
 </script>
 
