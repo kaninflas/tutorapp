@@ -64,7 +64,7 @@
                     name: 'data[User][password]', 
                     allowBlank: false, 
                     inputType: 'password' 
-                },
+                }/*,
                 {
                     id: 'recordarUsuario',
                     xtype: 'checkboxfield',     
@@ -80,7 +80,7 @@
                     boxLabel: 'Recordar Password',
                     hideLabel: true,                         
                     style: 'margin-left:105px;'
-                }
+                }*/
 
             ]
         });
@@ -92,9 +92,9 @@
             draggable: false,
             resizable: false,
             width: 450,
-            height: 215,
+            height: 160,
             minWidth: 450,
-            minHeight:215,
+            minHeight:160,
             plain: true,
             border: true,
             items: [
@@ -142,7 +142,7 @@
                         login.submit({ 
                             success: function(form, action){ 
                                 //remember user
-                                if(Ext.getCmp('recordarUsuario').getValue()){
+                                /*if(Ext.getCmp('recordarUsuario').getValue()){
                                     Ext.util.Cookies.set("rem_user",Ext.getCmp('username').getValue(""));                                                                                                
                                 }else{
                                     Ext.util.Cookies.lear("rem_user");                                             
@@ -152,7 +152,7 @@
                                     Ext.util.Cookies.set("rem_pswd",Ext.getCmp('password').getValue(""));                                                                                                
                                 }else{
                                     Ext.util.Cookies.lear("rem_pswd");                                             
-                                }
+                                }*/
                                 win.close();
                                     
                                 Ext.Ajax.request({
@@ -179,14 +179,14 @@
 
         win.show();
         // fill with the cookies
-        if (Ext.util.Cookies.get("rem_user")!=null){
+        /*if (Ext.util.Cookies.get("rem_user")!=null){
             Ext.getCmp('username').setValue(Ext.util.Cookies.get("rem_user"));
             Ext.getCmp('recordarUsuario').setValue(true);
         }
         if (Ext.util.Cookies.get("rem_pswd")!=null){
             Ext.getCmp('password').setValue(Ext.util.Cookies.get("rem_pswd"));
             Ext.getCmp('recordarPassword').setValue(true);
-        }
+        }*/
     }); //Ext.OnReady*/
 </script>
 
