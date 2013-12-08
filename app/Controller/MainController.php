@@ -23,14 +23,13 @@ class MainController extends AppController {
                         'Tutores',
                         'DPA'
         );
-
   /**
   * @desc Renderizo la vista principal donde se juntan todas las vistas
   * @return object    
   * @access public      
   */
   function index(){
-  $this->layout = '';
+    $this->layout = '';
   }        
   /**
   * @desc Renderizo usuarios a la vista principal
