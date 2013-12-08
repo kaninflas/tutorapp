@@ -70,7 +70,7 @@
                     items   : 
                     [
                         {                            
-                            icon   : '../tutorapp/app/webroot/img/delete.png',  
+                            icon   : GLOBAL_PATH + 'img/delete.png',  
                             tooltip: 'Eliminar Usuario',                            
                             handler:function(grid, rowIndex, colIndex) {
                                 Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de eliminar esto de manera permanente?', function(btn){
@@ -83,7 +83,7 @@
                             }
                         },
                         {                            
-                            icon   : '../tutorapp/app/webroot/img/unlock.png',  
+                            icon   : GLOBAL_PATH + 'img/unlock.png',  
                             tooltip: 'Activar Usuario',                                                                           
                             handler:function(grid, rowIndex, colIndex) {
                                 Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de activar al usuario?', function(btn){
