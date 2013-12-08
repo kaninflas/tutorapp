@@ -54,22 +54,22 @@ class User extends AppModel {
         if (isset($this->data[$this->alias]['password'])) {
             $passwordHasher = new SimplePasswordHasher();
             $this->data[$this->alias]['password'] = $passwordHasher->hash($this->data[$this->alias]['password']);
-        }
-        
-        //Reviso que el usuario no exista antes de guardarlo
-        $opts = array(
-            'conditions' => array(
-                'or' => array(
-                    'username' => $this->data[$this->alias]['username'],
-                    'correo' =>   $this->data[$this->alias]['correo']
+            
+            //Reviso que el usuario no exista antes de guardarlo
+            $opts = array(
+                'conditions' => array(
+                    'or' => array(
+                        'username' => $this->data[$this->alias]['username'],
+                        'correo' => $this->data[$this->alias]['correo']
+                    )
                 )
-            )
-        );  
-        $out =$this->find('first', $opts);
-        if (empty($out)) {
-            return true;
-        }else
-            return false;
+            );
+            $out = $this->find('first', $opts);
+            if (empty($out)) {
+                return true;
+            }else
+                return false;
+        }
     }
 
 }

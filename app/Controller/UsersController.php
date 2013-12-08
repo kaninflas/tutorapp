@@ -89,6 +89,26 @@ class UsersController extends AppController {
             unset($this->request->data['User']['password']);
         }
     }
+    
+    public function asigna_rol() {
+        $this->User->id = $this->request->data('id');
+        if (!$this->User->exists()) {
+            echo "{'success':false, 'responseText: 'Usuario no válido'}";
+            exit;
+        }
+        
+        if ($this->request->is('POST') || $this->request->is('PUT')) {
+            if ($this->User->save($this->request->data)) {
+                echo "{'success':true, responseText: 'El usuario ha sido guardado.'}";
+                exit;
+            }
+            echo "{'success': false, responseText: 'El usuario no pudo ser guardado. Por favor intente nuevamente.'}";
+        } 
+        
+        exit;
+    }
+    
+    
 
     public function delete($id = null) {
         $this->request->onlyAllow('post');
