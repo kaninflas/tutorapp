@@ -26,8 +26,13 @@ class UsersController extends AppController {
     
     public function login() {
         if ($this->request->is('post')) {
-            if ($this->Auth->login()) {
-                echo '{"success" : true}';
+            if ($this->Auth->login()) {                
+                if($this->Auth->user('activo')== 1){                
+                    echo '{"success" : true}';
+                    exit;
+                }
+                $this->Auth->logout();
+                echo 'Su usuario no ha sido activado. Favor de contactar al administrador del sistema para que lo activen';
                 exit;
             }             
             echo "Usuario o password no válido, por favor intente nuevamente";

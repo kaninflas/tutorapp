@@ -44,7 +44,7 @@
         plugins: [{
                 ptype: 'cellediting',
                 clicksToEdit: 1
-            }],          
+        }],          
         columns: [
             {
                 header      : 'Id',  
