@@ -47,8 +47,12 @@ ENGINE = InnoDB;
 -- Table `tutorapp`.`tutor_alumnos`
 -- -----------------------------------------------------
 CREATE  TABLE IF NOT EXISTS `tutorapp`.`tutor_alumnos` (
-  `id_tutor` INT NULL ,
-  `id_alumno` INT NULL )
+  `id_tutor` int(11) DEFAULT NULL,
+  `id_alumno` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+  )
 ENGINE = InnoDB;
 
 
