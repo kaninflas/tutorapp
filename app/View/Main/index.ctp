@@ -191,10 +191,14 @@
                                                                                 click:function()
                                                                                 {
                                                                                     Ext.getCmp('instrucciones').setText('Asignar alumnos a los tutores, Carta de Asignación');
-                                                                                    var contenedor=Ext.getCmp('main');                                    
-<?php echo $this->requestAction('Main/vdpa', array('return')) ?>
-                                                                                contenedor.add(gDPA);    
-
+                                                                                    var contenedor=Ext.getCmp('main');
+                                                                                    if(!activo_asignar)
+                                                                                    {
+<?php echo $this->requestAction('Main/vasignar', array('return')) ?>
+                                                                                        contenedor.add(vtnAsignar); 
+                                                                                        contenedor.getLayout().setActiveItem(vtnAsignar);   
+                                                                                        activo_asignar=true;
+                                                                                    }
                                                                             }
                                                                         }
                                                                     },

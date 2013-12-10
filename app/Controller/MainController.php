@@ -21,7 +21,8 @@ class MainController extends AppController {
                         'User',
                         'Alumnos',
                         'Tutores',
-                        'DPA'
+                        'DPA',
+                        'TutorAlumnos'
         );
   /**
   * @desc Renderizo la vista principal donde se juntan todas las vistas
@@ -164,6 +165,57 @@ class MainController extends AppController {
   function vusuarios(){}
   function valumnos(){}
   function vtutores(){}
+  function vasignar(){}
+  function alumnos_asignados($id_tutor){    
+    $this->loadModel('TutorAlumnos');
+    $arreglo=$this->TutorAlumnos->tutor_tutorado($id_tutor);
+    
+    if($arreglo==null)
+    {
+      print_r(json_encode('Arreglo Vacio'));
+      exit;
+    }
+    foreach($arreglo as $key => $value){      
+      $respuesta['items'][] = $value['info'];
+    } 
+    print_r(json_encode($respuesta));exit;
+  }
+  function alumnos_disponibles($id_tutor){        
+    $arreglo=$this->Alumnos->disponibles($id_tutor);
+    
+    if($arreglo==null)
+    {
+      print_r(json_encode('Arreglo Vacio'));
+      exit;
+    }
+    foreach($arreglo as $key => $value){      
+      $respuesta['items'][] = $value['info'];
+    } 
+    print_r(json_encode($respuesta));exit;
+  }
+   function asignar_alumno($id){  
+    $this->layout='';
+    $datos=$_POST;    
+    $arrDatos = array(
+             'id_tutor'  => $datos['id_tutor'],
+            'id_alumno'  => $datos['id_alumno']
+        );
+    
+    $this->TutorAlumnos->create();  
+    $this->TutorAlumnos->save($arrDatos); 
+    $respuesta['success'] = true;
+    $respuesta['msg']= "Informacion guardada correctamente";
+    print_r(json_encode($respuesta));exit;         
   
+  }
+   function dpa_nombres(){
+    $registrosDPA=$this->DPA->find('all',array('order'=>'id'));                
+    foreach($registrosDPA as $key => $value){
+      $value['DPA']['nombre']=$value['DPA']['nombre'].' '.$value['DPA']['primer_apellido'].' '.$value['DPA']['segundo_apellido'];
+      $arrResp['items'][] = $value['DPA'];
+    }                
+    print_r(json_encode($arrResp));
+    exit;
+  } 
 
 }

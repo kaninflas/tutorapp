@@ -6,7 +6,5 @@
 class Tutores extends AppModel {
 	public $name = 'Tutores';
 	public $useTable = 'tutores';
-	
-
 }
 ?>

@@ -11,7 +11,7 @@
             type: 'ajax',
             api:{
               read      : '<?php echo $this->Html->url('/Main/tutores');?>',
-              destroy   : '<?php echo $this->Html->url('/Main/borrar/Tutores')?>'
+              destroy   : '<?php echo $this->Html->url('/Main/borrar/TutorAlumnos')?>'
             },
             reader: {
                 type: 'json',
