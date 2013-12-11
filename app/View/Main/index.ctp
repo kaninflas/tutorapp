@@ -30,6 +30,7 @@
     var activo_tutor    =false;
     var activo_dpa      =false;
     var activo_asignar  =false;
+    var activo_tutorias =false;
     //Ext.require(['*']);   
     Ext.onReady(function(){    
         var viewport = new Ext.Viewport({
@@ -198,6 +199,29 @@
                                                                                         contenedor.add(vtnAsignar); 
                                                                                         contenedor.getLayout().setActiveItem(vtnAsignar);   
                                                                                         activo_asignar=true;
+                                                                                    }
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                            xtype    :'button',
+                                                                            text     :'Tutorias',
+                                                                            scale    :'large',                            
+                                                                            maxWidth : 350,
+                                                                            minWidth : 310, 
+                                                                            margin   : 20,
+                                                                            listeners:
+                                                                                {
+                                                                                click:function()
+                                                                                {
+                                                                                    Ext.getCmp('instrucciones').setText('Crear y Revisar las tutorias del alumno');
+                                                                                    var contenedor=Ext.getCmp('main');
+                                                                                    if(!activo_tutorias)
+                                                                                    {
+<?php echo $this->requestAction('Main/vtutorias', array('return')) ?>
+                                                                                        contenedor.add(vtnTutorias); 
+                                                                                        contenedor.getLayout().setActiveItem(vtnTutorias);   
+                                                                                        activo_tutorias=true;
                                                                                     }
                                                                             }
                                                                         }

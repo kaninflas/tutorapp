@@ -22,7 +22,8 @@ class MainController extends AppController {
                         'Alumnos',
                         'Tutores',
                         'DPA',
-                        'TutorAlumnos'
+                        'TutorAlumnos',
+                        'Tutorias'
         );
   /**
   * @desc Renderizo la vista principal donde se juntan todas las vistas
@@ -166,6 +167,7 @@ class MainController extends AppController {
   function valumnos(){}
   function vtutores(){}
   function vasignar(){}
+  function vtutorias(){}
   function alumnos_asignados($id_tutor){    
     $this->loadModel('TutorAlumnos');
     $arreglo=$this->TutorAlumnos->tutor_tutorado($id_tutor);
@@ -217,5 +219,24 @@ class MainController extends AppController {
     print_r(json_encode($arrResp));
     exit;
   } 
+
+  function tutorias($id){
+    $registrosTutorias=$this->Tutorias->hechas($id);
+    $arrResp = $registrosTutorias;                
+    foreach($registrosTutorias as $key => $value){
+      $arrResp['items'][] = $value['Tutorias'];
+    }                
+    print_r(json_encode($arrResp));
+    exit;
+  }     
+  function alumnos_matricula(){
+     $registrosAlumnos=$this->Alumnos->find('all',array('order'=>'id'));                     
+    foreach($registrosAlumnos as $key => $value){
+      $value['Alumnos']['nombre']=$value['Alumnos']['matricula'].' - '.$value['Alumnos']['nombre'].' '.$value['Alumnos']['primer_apellido'].' '.$value['Alumnos']['segundo_apellido'];
+      $arrResp['items'][] = $value['Alumnos'];
+    }                
+    print_r(json_encode($arrResp));
+    exit;
+  }
 
 }
