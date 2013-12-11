@@ -238,5 +238,27 @@ class MainController extends AppController {
     print_r(json_encode($arrResp));
     exit;
   }
+  function alta_tutoria(){} 
+   function tutoria_crear(){
+    $datos = $_POST;
+      $arrDatos = array(
+            'programa_educativo' => $datos['programa_educativo'],
+            'fecha_asignacion'   => $datos['fecha_asignacion'],
+            'fecha_sesion'       => $datos['fecha_sesion'],
+            'estatus'            => $datos['estatus'],
+            'num_sesion'         => $datos['num_sesion'],
+            'acuerdos'           => $datos['acuerdos'],
+            'id_alumno'          => $datos['id_alumno'],
+            'notas_personales'   => $datos['notas_personales']
+        );        
+      //Aqui guardamos el renglon
+       $this->Tutorias->create();//creamos un regnlon vacio para
+         $this->Tutorias->save($arrDatos);//posteriormente guardar ahi los datos del array que generamos
+
+          $respuesta['success'] = true;
+        $respuesta['msg']   = "Datos guardados";
+        print_r(json_encode($respuesta));
+      exit;          
+   }  
 
 }

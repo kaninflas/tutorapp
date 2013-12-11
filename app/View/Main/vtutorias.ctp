@@ -119,27 +119,29 @@ var vtnTutorias = Ext.create('Ext.panel.Panel', {
                             header      : 'notas_personales',  
                             dataIndex   : 'notas_personales',                             
                         },
+                    ],
+                    dockedItems : [
                         {
-                            xtype   : 'actioncolumn',
-                            width   :  100,
-                            header  : '',
+                            xtype   : 'toolbar',
                             items   : 
-                            [
-/*
-                                {                            
-                                    icon   : GLOBAL_PATH+'img/delete.png',  
-                                    tooltip: 'Eliminar Alumno',                            
-                                    handler:function(grid, rowIndex, colIndex) {
-                                           var renglon = grid.getStore().getAt(rowIndex);
-                                                tutor_alumnos.remove(renglon);
-                                                alumnos.load();
-                                                                                    
-                                    }
-                                }
-                                */
-                            ]
+                                    [
+                                        {                    
+                                            text    : 'Nueva Tutoria',
+                                            scope   : this,
+                                            handler : function(){  
+                                                if (id_enviar=="0"){
+                                                    Ext.Msg.alert("¡Error!","Porfavor seleccione un alumno, y presione el boton cargar");
+                                                }
+                                                else
+                                                {
+                                                    <?php echo $this->requestAction('Main/alta_tutoria', array('return')) ?>
+                                                    vtnAltaTutoria.show();   
+                                                }                                                
+                                            }
+                                        }   
+                                    ]
                         }
-                    ]              
+                    ],              
                 }
             
             ]

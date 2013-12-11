@@ -31,8 +31,10 @@
     var activo_dpa      =false;
     var activo_asignar  =false;
     var activo_tutorias =false;
+
     //Ext.require(['*']);   
-    Ext.onReady(function(){    
+    Ext.onReady(function(){   
+    var id_principal_usuario= "<?php echo  CakeSession::read('Auth.User.id')?>";
         var viewport = new Ext.Viewport({
             layout: "border",
             border: false,
