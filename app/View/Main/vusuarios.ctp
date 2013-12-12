@@ -44,7 +44,7 @@
         plugins: [{
                 ptype: 'cellediting',
                 clicksToEdit: 1
-        }],          
+            }],          
         columns: [
             {
                 header      : 'Id',  
@@ -67,90 +67,102 @@
                     displayField: 'nombre',
                     valueField: 'rol',
                     listeners: {
-                        
-                        select: function(combo, recs, opts){                            
-                            Ext.Ajax.request({
-                                url: GLOBAL_PATH + 'Users/asigna_rol',
-                                method: 'POST',     
-                                params:{
-                                    rol: recs[0].data.rol,
-                                    id: gUsuarios.getSelectionModel().getSelection()[0].data.id
-                                },
-                                success: function(response){     
-                                    usuarios.load();
-                                },  
-                                failure: function(response){
-                                    console.log("error: " + response.responseText);
-                                    console.log("error:" + response.status);
-                                }
-                            });  
+                        /*
+                         * Asigno roles y defino la relación del usuario que se creará.
+                         */
+                        select: function(combo, recs, opts){  
+                            //Asigno id a usuario
+                            id_principal_usuario = gUsuarios.getSelectionModel().getSelection()[0].data.id
+                            rol_usuario_seleccionado = recs[0].data.rol
+                            var storeUsuariosTipo;   
                             
+                            if( rol_usuario_seleccionado == 'admin' || rol_usuario_seleccionado == 'Por Asignar'){                            
+                                Ext.Ajax.request({
+                                    url: GLOBAL_PATH + 'Users/asigna_rol',
+                                    method: 'POST',     
+                                    params:{
+                                        rol: rol_usuario_seleccionado,
+                                        id: id_principal_usuario
+                                    },
+                                    success: function(response){     
+                                        usuarios.load();
+                                    },  
+                                    failure: function(response){
+                                        console.log("error: " + response.responseText);
+                                        console.log("error:" + response.status);
+                                    }
+                                }); 
+                            }else{    
+                                    <?php echo $this->requestAction('Main/vusuarios_rol', array('return')) ?>//pedimos la ventana del alumno que se encuentra en otra vista
+                                    btnAsignaRol.show();   //como ya esta hecha la peticion a la vista ahora la abrimos con el mismo nombre que tiene                             
+                                                               
+                            }
                             combo.fireEvent('blur'); 
         
+                            }
                         }
                     }
-                }
                     
-            },
-            {
-                header      : 'E-mail',  
-                dataIndex   : 'correo', 
-                width       :  250              
-            },
-            {
-                header      : 'Fecha de registro',  
-                dataIndex   : 'fecha',  
-                width       :   200               
-            },
-            {
-                header      : 'Estatus',  
-                dataIndex   : 'activo', 
-                width       :  100,
-                renderer    : function(val) {
-                    if (val=='0'){return 'Inactivo';}
-                    else{return 'Activo';}                        
-                }               
-            },
-            {
-                xtype   : 'actioncolumn',
-                width   :  100,
-                header  : '',
-                items   : 
-                    [
-                    {                            
-                        icon   : GLOBAL_PATH + 'img/delete.png',  
-                        tooltip: 'Eliminar Usuario',                            
-                        handler:function(grid, rowIndex, colIndex) {
-                            Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de eliminar esto de manera permanente?', function(btn){
-                                if(btn == 'yes'){
-                                    var renglon = grid.getStore().getAt(rowIndex);
-                                    usuarios.remove(renglon);
-                                    usuarios.load();
-                                }
-                            });
-                        }
-                    },
-                    {                            
-                        icon   : GLOBAL_PATH + 'img/unlock.png',  
-                        tooltip: 'Activar Usuario',                                                                           
-                        handler:function(grid, rowIndex, colIndex) {
-                            Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de activar al usuario?', function(btn){
-                                if(btn == 'yes'){
-                                    var renglon = grid.getStore().getAt(rowIndex);                                        
-                                    var id=renglon.get('id');
+                },
+                {
+                    header      : 'E-mail',  
+                    dataIndex   : 'correo', 
+                    width       :  250              
+                },
+                {
+                    header      : 'Fecha de registro',  
+                    dataIndex   : 'fecha',  
+                    width       :   200               
+                },
+                {
+                    header      : 'Estatus',  
+                    dataIndex   : 'activo', 
+                    width       :  100,
+                    renderer    : function(val) {
+                        if (val=='0'){return 'Inactivo';}
+                        else{return 'Activo';}                        
+                    }               
+                },
+                {
+                    xtype   : 'actioncolumn',
+                    width   :  100,
+                    header  : '',
+                    items   : 
+                        [
+                        {                            
+                            icon   : GLOBAL_PATH + 'img/delete.png',  
+                            tooltip: 'Eliminar Usuario',                            
+                            handler:function(grid, rowIndex, colIndex) {
+                                Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de eliminar esto de manera permanente?', function(btn){
+                                    if(btn == 'yes'){
+                                        var renglon = grid.getStore().getAt(rowIndex);
+                                        usuarios.remove(renglon);
+                                        usuarios.load();
+                                    }
+                                });
+                            }
+                        },
+                        {                            
+                            icon   : GLOBAL_PATH + 'img/unlock.png',  
+                            tooltip: 'Activar Usuario',                                                                           
+                            handler:function(grid, rowIndex, colIndex) {
+                                Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de activar al usuario?', function(btn){
+                                    if(btn == 'yes'){
+                                        var renglon = grid.getStore().getAt(rowIndex);                                        
+                                        var id=renglon.get('id');
 
-                                    Ext.Ajax.request({
-                                        url:'<?php echo $this->Html->url('/Main/activar/') ?>'+id,
-                                        scripts: false,
-                                        success: function(response){usuarios.load();},
-                                        failure: function(response){usuarios.load();}
-                                    });                                          
-                                }
-                            });
-                        }
-                    },
-                ]
-            }   
-        ]            
-    }); 
+                                        Ext.Ajax.request({
+                                            url:'<?php echo $this->Html->url('/Main/activar/') ?>'+id,
+                                            scripts: false,
+                                            success: function(response){usuarios.load();},
+                                            failure: function(response){usuarios.load();}
+                                        });                                          
+                                    }
+                                });
+                            }
+                        },
+                    ]
+                }   
+            ]            
+        }); 
    
