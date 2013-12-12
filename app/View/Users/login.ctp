@@ -85,8 +85,9 @@
             ]
         });
 
-        var win = new Ext.Window({
+        var winlog = new Ext.Window({
             layout:'border',
+            id: 'win-log',
             title: 'Login',
             closable: false,
             draggable: false,
@@ -121,10 +122,9 @@
                             url: GLOBAL_PATH + 'Users/add',
                             method: 'GET',                                   
                             //scripts: true,
-                            success: function(response){                                                         
-                                win.close();
-                                var body = Ext.getBody();
-                                body.update(response.responseText,true);
+                            success: function(response){
+                               // winlog.close();
+                                eval(response.responseText);
                             },  
                             failure: function(response){
                                 console.log("error: " + response.responseText);
@@ -153,14 +153,14 @@
                                 }else{
                                     Ext.util.Cookies.lear("rem_pswd");                                             
                                 }*/
-                                win.close();
+                                winlog.close();
                                     
                                 Ext.Ajax.request({
                                     url: GLOBAL_PATH + 'Main/index',
                                     method: 'GET',       
                                     success: function(response){
-                                        var body = Ext.getBody();
-                                        body.update(response.responseText,true);
+                                        var eldiv = Ext.getBody();
+                                        eldiv.update(response.responseText,true);
                                     },  
                                     failure: function(response){
                                         console.log("error: " + response.responseText);
@@ -177,7 +177,7 @@
             ] 
         });
 
-        win.show();
+        winlog.show();
         // fill with the cookies
         /*if (Ext.util.Cookies.get("rem_user")!=null){
             Ext.getCmp('username').setValue(Ext.util.Cookies.get("rem_user"));
@@ -188,5 +188,5 @@
             Ext.getCmp('recordarPassword').setValue(true);
         }*/
     }); //Ext.OnReady*/
-</script>
 
+</script>

@@ -25,14 +25,14 @@ class MainController extends AppController {
         'TutorAlumnos',
         'Tutorias'
     );
-   
+
     public function beforeFilter() {
-        parent::beforeFilter();       
-        if($this->action == 'index'){            
+        parent::beforeFilter();
+        if ($this->action == 'index') {
             if ($this->Auth->user('rol') != 'admin') {
-                $this->redirect('index_'. $this->Auth->user('rol'));
+                $this->redirect('index_' . $this->Auth->user('rol'));
             }
-        } 
+        }
     }
 
     /**
@@ -135,7 +135,8 @@ class MainController extends AppController {
         $arrDatos = array(
             'nombre' => $datos['nombre'], //tomamos el campo directamiente de los datos transferidos atraves el post 
             'primer_apellido' => $datos['primer_apellido'], //es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
-            'segundo_apellido' => $datos['segundo_apellido']
+            'segundo_apellido' => $datos['segundo_apellido'],
+            'id_usuario'        => $datos['combo_idUsuario']
         );
         //Aqui guardamos el renglon
         $this->DPA->create(); //creamos un regnlon vacio para
@@ -172,7 +173,8 @@ class MainController extends AppController {
         $arrDatos = array(
             'nombre' => $datos['nombre'], //tomamos el campo directamiente de los datos transferidos atraves el post 
             'primer_apellido' => $datos['primer_apellido'], //es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
-            'segundo_apellido' => $datos['segundo_apellido']
+            'segundo_apellido' => $datos['segundo_apellido'],
+            'id_usuario'        => $datos['combo_idUsuario']
         );
         //Aqui guardamos el renglon
         $this->Tutores->create(); //creamos un regnlon vacio para
@@ -191,12 +193,13 @@ class MainController extends AppController {
     function alumno_crear() {
         $datos = $_POST;
         $arrDatos = array(
-            'nombre' => $datos['nombre'], //tomamos el campo directamiente de los datos transferidos atraves el post 
-            'primer_apellido' => $datos['primer_apellido'], //es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
-            'segundo_apellido' => $datos['segundo_apellido'],
-            'carrera' => $datos['carrera'],
-            'matricula' => $datos['matricula'],
-            'cuatrimestre' => $datos['cuatrimestre']
+            'nombre'            => $datos['nombre'], //tomamos el campo directamiente de los datos transferidos atraves el post 
+            'primer_apellido'   => $datos['primer_apellido'], //es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
+            'segundo_apellido'  => $datos['segundo_apellido'],
+            'carrera'           => $datos['carrera'],
+            'matricula'         => $datos['matricula'],
+            'cuatrimestre'      => $datos['cuatrimestre'],
+            'id_usuario'        => $datos['combo_idUsuario']
         );
         //Aqui guardamos el renglon
         $this->Alumnos->create(); //creamos un regnlon vacio para
@@ -415,6 +418,17 @@ class MainController extends AppController {
 
         exit;
     }
-    function alta_datos(){}
+
+    function alta_datos() {}
+
+    function list_idusuarios(){
+        $arr = $this->User->find('all', array('order' => 'fecha,rol,username,correo'));
+        foreach ($arr as $k => $value) {
+            $arrResp['data'][$k]['nombre'] = $value['User']['correo'] . ' - ' . ' rol: ' . $value['User']['rol'];
+            $arrResp['data'][$k]['id'] = $value['User']['id'];
+        }
+        echo json_encode($arrResp);
+        exit;
+    }
 
 }

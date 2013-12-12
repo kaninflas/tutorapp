@@ -74,7 +74,7 @@
                     [
                        
                         {                            
-                            icon   : '../tutorapp/app/webroot/img/datos.png',  
+                            icon   : GLOBAL_PATH + 'img/datos.png',  
                             tooltip: 'Datos Personales Alumno',                             
                             handler:function(grid, rowIndex, colIndex) {
                                 var row=alumnos.getAt(rowIndex);
@@ -86,7 +86,7 @@
                             }
                         },
                          {                            
-                            icon   : '../tutorapp/app/webroot/img/delete.png',  
+                            icon   : GLOBAL_PATH + 'img/delete.png',  
                             tooltip: 'Eliminar Alumno',                            
                             handler:function(grid, rowIndex, colIndex) {
                                 Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de eliminar esto de manera permanente?', function(btn){

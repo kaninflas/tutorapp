@@ -60,7 +60,7 @@
                     items   : 
                     [
                         {                            
-                            icon   : '../tutorapp/app/webroot/img/delete.png',  
+                            icon   : GLOBAL_PATH + 'img/delete.png',  
                             tooltip: 'Eliminar Tutor',                            
                             handler:function(grid, rowIndex, colIndex) {
                                 Ext.MessageBox.confirm('¡Importante!', '¿Esta seguro de eliminar esto de manera permanente?', function(btn){

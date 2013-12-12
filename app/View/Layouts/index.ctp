@@ -70,7 +70,10 @@ $description = __d('cake_dev', 'TutorApp');
             });
         </script>       
     </head>
-    <body>       
-        <?php echo $this->fetch('content'); ?>       
+    <body> 
+        <div id="div-helper"></div>
+        <div id="maincontent">
+            <?php echo $this->fetch('content'); ?>             
+        </div>      
     </body>
 </html>

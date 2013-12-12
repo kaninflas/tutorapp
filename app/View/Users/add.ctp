@@ -22,9 +22,7 @@
  * @subpackage    app/View/User
  */
 ?>
-<script >
-    Ext.QuickTips.init(); 
-    Ext.onReady(function(){ 
+//<script > 
         var add = Ext.create('Ext.form.Panel',{ 
             frame: false,  
             id: 'userAddForm',
@@ -50,14 +48,14 @@
                 [ 
                 { 
                     xtype: 'textfield', 
-                    id: 'username',
+                    id: 'username_add',
                     fieldLabel: 'Usuario:', 
                     name: 'data[User][username]', 
                     allowBlank: false
                 }, 
                 {
                     xtype: 'textfield', 
-                    id: 'password',
+                    id: 'password_add',
                     fieldLabel: 'Password:', 
                     name: 'data[User][password]', 
                     allowBlank: false, 
@@ -66,7 +64,7 @@
                 {
                     xtype: 'textfield', 
                     vtype: 'email',
-                    id: 'correo', 
+                    id: 'correo_id', 
                     fieldLabel: 'Correo:',
                     name: 'data[User][correo]',
                     allowBlank: false
@@ -75,14 +73,13 @@
             ]
         });
 
-        var win = new Ext.Window({
+        var winadd = new Ext.Window({
             layout:'border',
+            id: 'win-add',
             title: 'Registrar',
-            closable: false,
-            draggable: false,
-            resizable: false,
+            resizable: false,	
             width: 450,
-            height: 185,
+            height: 200,
             minWidth: 450,
             minHeight:185,
             plain: true,
@@ -112,7 +109,7 @@
                                 //scripts: true,
                                 success: function(form, action){ 
                                     //Ext.Msg.alert('Gracias', 'Usuario Guardado');                                
-                                    win.close();
+                                    //winlog.close();
                                     Ext.Ajax.request({
                                         url: GLOBAL_PATH,
                                         method: 'GET',
@@ -121,9 +118,9 @@
                                         },
                                         //scripts: true,
                                         success: function(response){                                                         
-                                            win.close();
-                                            var body = Ext.getBody();
-                                            body.update(response.responseText,true);
+                                            winadd.close();
+                                            /*var str = str_replace(str,"<script>",'');
+                                            eval(str);*/
                                         },  
                                         failure: function(response){
                                             console.log("error: " + response.responseText);
@@ -142,6 +139,5 @@
             ] 
         });
 
-        win.show();
-    }); //Ext.OnReady*/
-</script>
+        winadd.doLayout();
+        winadd.show();
