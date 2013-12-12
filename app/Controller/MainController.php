@@ -23,7 +23,8 @@ class MainController extends AppController {
         'Tutores',
         'DPA',
         'TutorAlumnos',
-        'Tutorias'
+        'Tutorias',
+        'DatosAlumno'
     );
    
     public function beforeFilter() {
@@ -416,5 +417,44 @@ class MainController extends AppController {
         exit;
     }
     function alta_datos(){}
+      function alumno_datos_crear() {
+        $datos = $_POST;
+        $arrDatos = array(
+         'id' => $datos['id'],
+         'calle' => $datos['calle'],
+         'colonia' => $datos['colonia'],
+         'codigo_postal' => $datos['codigo_postal'],
+         'sexo' => $datos['sexo'],
+         'telefono' => $datos['telefono'],
+         'celular' => $datos['celular'],
+         'otro_telefono' => $datos['otro_telefono'],
+         'correo' => $datos['correo'],
+         'lugar_nacimiento' => $datos['lugar_nacimiento'],
+         'fecha_nacimiento' => $datos['fecha_nacimiento'],
+         'estado_civil' => $datos['estado_civil    '],
+         'vive_con' => $datos['vive_con'],
+         'becado' => $datos['becado'],
+         'tipo_beca' => $datos['tipo_beca'],
+         'instancia_beca' => $datos['instancia_beca'],
+         'trabaja' => $datos['trabaja'],
+         'empresa_trabajo' => $datos['empresa_trabajo'],
+         'horario' => $datos['horario'],
+         'puesto_trabajo' => $datos['puesto_trabajo'],
+         'servicio_medico' => $datos['servicio_medico'],
+         'tratamiento_medico' => $datos['tratamiento_medico'],
+         'tratamiento_observaciones' => $datos['tratamiento_observaciones'],
+         'observaciones' => $datos['observaciones'],
+         'tipo_sangre' => $datos['tipo_sangre'],
+         'fecha' => $datos['fecha']
+        );
+        //Aqui guardamos el renglon
+        $this->DatosAlumno->create(); //creamos un regnlon vacio para
+        $this->DatosAlumno->save($arrDatos); //posteriormente guardar ahi los datos del array que generamos
+
+        $respuesta['success'] = true;
+        $respuesta['msg'] = "Datos guardados";
+        print_r(json_encode($respuesta));
+        exit;
+    }
 
 }
