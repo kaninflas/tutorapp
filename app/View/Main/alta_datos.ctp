@@ -29,7 +29,13 @@ var form=Ext.create('Ext.form.Panel', {
 			bodyPadding	: 15 ,
 			width		: 650,
 			submitValue :true,			
-			items: [					
+			items: [	
+				{
+					xtype	:'textfield',
+					name 	:'id',
+					value 	:id_seleccionado,
+					hidden 	:true
+				},			
 				{
 					xtype	: 'fieldcontainer',
                     layout 	: 'hbox',
@@ -438,13 +444,13 @@ var form=Ext.create('Ext.form.Panel', {
                 var form = this.up('form').getForm();                
                 if (form.isValid()) {
                   	form.submit({ 
-	                    waitMsg:'Creando Alumno...',
+	                    waitMsg:'Creando Datos Alumno...',
 	                    waitTitle: 'Guardando...', 
-	                    url: GLOBAL_PATH+'Main/alumno_crear/',
+	                    url: GLOBAL_PATH+'Main/alumno_datos_crear/',
 	                    success: function(form, action) {		                     
 		                    form.reset();
 		                    vtnAltaDatos.destroy();
-		                    Ext.Msg.alert('¡Completado!',"El Alumno ha sido creado");
+		                    Ext.Msg.alert('¡Completado!',"Los datos del alumno han sido creados");
 		            		alumnos.load();	                   
 	                    },	                     
                    });

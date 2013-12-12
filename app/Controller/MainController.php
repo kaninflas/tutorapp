@@ -23,7 +23,8 @@ class MainController extends AppController {
         'Tutores',
         'DPA',
         'TutorAlumnos',
-        'Tutorias'
+        'Tutorias',
+        'DatosAlumno'
     );
 
     public function beforeFilter() {
@@ -136,7 +137,7 @@ class MainController extends AppController {
             'nombre' => $datos['nombre'], //tomamos el campo directamiente de los datos transferidos atraves el post 
             'primer_apellido' => $datos['primer_apellido'], //es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
             'segundo_apellido' => $datos['segundo_apellido'],
-            'id_usuario'        => $datos['combo_idUsuario']
+            'id_usuario' => $datos['combo_idUsuario']
         );
         //Aqui guardamos el renglon
         $this->DPA->create(); //creamos un regnlon vacio para
@@ -174,7 +175,7 @@ class MainController extends AppController {
             'nombre' => $datos['nombre'], //tomamos el campo directamiente de los datos transferidos atraves el post 
             'primer_apellido' => $datos['primer_apellido'], //es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
             'segundo_apellido' => $datos['segundo_apellido'],
-            'id_usuario'        => $datos['combo_idUsuario']
+            'id_usuario' => $datos['combo_idUsuario']
         );
         //Aqui guardamos el renglon
         $this->Tutores->create(); //creamos un regnlon vacio para
@@ -193,13 +194,13 @@ class MainController extends AppController {
     function alumno_crear() {
         $datos = $_POST;
         $arrDatos = array(
-            'nombre'            => $datos['nombre'], //tomamos el campo directamiente de los datos transferidos atraves el post 
-            'primer_apellido'   => $datos['primer_apellido'], //es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
-            'segundo_apellido'  => $datos['segundo_apellido'],
-            'carrera'           => $datos['carrera'],
-            'matricula'         => $datos['matricula'],
-            'cuatrimestre'      => $datos['cuatrimestre'],
-            'id_usuario'        => $datos['combo_idUsuario']
+            'nombre' => $datos['nombre'], //tomamos el campo directamiente de los datos transferidos atraves el post 
+            'primer_apellido' => $datos['primer_apellido'], //es importante que el NAME del campo sea EXACTAMENTE IGUAL al que tomaremos del POST
+            'segundo_apellido' => $datos['segundo_apellido'],
+            'carrera' => $datos['carrera'],
+            'matricula' => $datos['matricula'],
+            'cuatrimestre' => $datos['cuatrimestre'],
+            'id_usuario' => $datos['combo_idUsuario']
         );
         //Aqui guardamos el renglon
         $this->Alumnos->create(); //creamos un regnlon vacio para
@@ -419,16 +420,57 @@ class MainController extends AppController {
         exit;
     }
 
-    function alta_datos() {}
+    function alta_datos() {
+        
+    }
 
-    function list_idusuarios(){
+    function alumno_datos_crear() {
+        $datos = $_POST;
+        $arrDatos = array(
+            'id' => $datos['id'],
+            'calle' => $datos['calle'],
+            'colonia' => $datos['colonia'],
+            'codigo_postal' => $datos['codigo_postal'],
+            'sexo' => $datos['sexo'],
+            'telefono' => $datos['telefono'],
+            'celular' => $datos['celular'],
+            'otro_telefono' => $datos['otro_telefono'],
+            'correo' => $datos['correo'],
+            'lugar_nacimiento' => $datos['lugar_nacimiento'],
+            'fecha_nacimiento' => $datos['fecha_nacimiento'],
+            'estado_civil' => $datos['estado_civil    '],
+            'vive_con' => $datos['vive_con'],
+            'becado' => $datos['becado'],
+            'tipo_beca' => $datos['tipo_beca'],
+            'instancia_beca' => $datos['instancia_beca'],
+            'trabaja' => $datos['trabaja'],
+            'empresa_trabajo' => $datos['empresa_trabajo'],
+            'horario' => $datos['horario'],
+            'puesto_trabajo' => $datos['puesto_trabajo'],
+            'servicio_medico' => $datos['servicio_medico'],
+            'tratamiento_medico' => $datos['tratamiento_medico'],
+            'tratamiento_observaciones' => $datos['tratamiento_observaciones'],
+            'observaciones' => $datos['observaciones'],
+            'tipo_sangre' => $datos['tipo_sangre'],
+            'fecha' => $datos['fecha']
+        );
+        //Aqui guardamos el renglon
+        $this->DatosAlumno->create(); //creamos un regnlon vacio para
+        $this->DatosAlumno->save($arrDatos); //posteriormente guardar ahi los datos del array que generamos
+
+        $respuesta['success'] = true;
+        $respuesta['msg'] = "Datos guardados";
+        print_r(json_encode($respuesta));
+        exit;
+    }
+
+    function list_idusuarios() {
         $arr = $this->User->find('all', array('order' => 'fecha,rol,username,correo'));
         foreach ($arr as $k => $value) {
             $arrResp['data'][$k]['nombre'] = $value['User']['correo'] . ' - ' . ' rol: ' . $value['User']['rol'];
             $arrResp['data'][$k]['id'] = $value['User']['id'];
         }
         echo json_encode($arrResp);
-        exit;
     }
 
 }
