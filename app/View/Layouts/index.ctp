@@ -58,7 +58,8 @@ $description = __d('cake_dev', 'TutorApp');
 
         <script>
             /* Variables Globales */
-            var GLOBAL_PATH = '<?php echo $this->base . '/'; ?>';            
+            var GLOBAL_PATH = '<?php echo $this->base . '/'; ?>';
+            var userAdmin_flag  = false;            
             
             /* Script que administra la carga de las librerías */
             Ext.Loader.setConfig({

@@ -75,8 +75,22 @@
                             id_principal_usuario = gUsuarios.getSelectionModel().getSelection()[0].data.id
                             rol_usuario_seleccionado = recs[0].data.rol
                             var storeUsuariosTipo;   
-                            
-                            if( rol_usuario_seleccionado == 'admin' || rol_usuario_seleccionado == 'Por Asignar'){                            
+                             Ext.Ajax.request({
+                                    url: GLOBAL_PATH + 'Users/asigna_rol',
+                                    method: 'POST',     
+                                    params:{
+                                        rol: rol_usuario_seleccionado,
+                                        id: id_principal_usuario
+                                    },
+                                    success: function(response){     
+                                        usuarios.load();
+                                    },  
+                                    failure: function(response){
+                                        console.log("error: " + response.responseText);
+                                        console.log("error:" + response.status);
+                                    }
+                             }); 
+                            /*if( rol_usuario_seleccionado == 'admin' || rol_usuario_seleccionado == 'Por Asignar'){                            
                                 Ext.Ajax.request({
                                     url: GLOBAL_PATH + 'Users/asigna_rol',
                                     method: 'POST',     
@@ -96,7 +110,7 @@
                                     <?php echo $this->requestAction('Main/vusuarios_rol', array('return')) ?>//pedimos la ventana del alumno que se encuentra en otra vista
                                     btnAsignaRol.show();   //como ya esta hecha la peticion a la vista ahora la abrimos con el mismo nombre que tiene                             
                                                                
-                            }
+                            }*/
                             combo.fireEvent('blur'); 
         
                             }

@@ -23,6 +23,30 @@
  */
 ?>
 //<script > 
+        //---------------------------------------------------------------
+    //  Cargamos un store con los datos de los usuarios
+    //---------------------------------------------------------------
+    var comboRoles = Ext.create('Ext.data.Store', {         
+        storeId: 'comboRoles',   
+        fields: ['id', 'nombre'],
+        data:[
+            {id : 'alumno', nombre: 'Alumno'},
+            {id : 'tutor' , nombre: 'Tutor'},
+            {id : 'dpa'   , nombre: 'DPA'}
+        ]
+    });
+
+        var comboTemp = (userAdmin_flag)?
+            {
+                id          : 'combo_rol',
+                name        : 'rol',
+                xtype       : 'combo',
+                valueField  : 'id',                                            
+                displayField: 'nombre',             
+                store       : comboRoles,
+                fieldLabel  : 'Asignar Rol:',
+                editable    : false                       
+            }: {}
         var add = Ext.create('Ext.form.Panel',{ 
             frame: false,  
             id: 'userAddForm',
@@ -68,7 +92,8 @@
                     fieldLabel: 'Correo:',
                     name: 'data[User][correo]',
                     allowBlank: false
-                }
+                },
+                comboTemp
 
             ]
         });
@@ -79,7 +104,7 @@
             title: 'Registrar',
             resizable: false,	
             width: 450,
-            height: 200,
+            height: 210,
             minWidth: 450,
             minHeight:185,
             plain: true,

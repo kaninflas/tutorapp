@@ -465,12 +465,13 @@ class MainController extends AppController {
     }
 
     function list_idusuarios() {
-        $arr = $this->User->find('all', array('order' => 'fecha,rol,username,correo'));
+        $arr = $this->User->find('all', array('order' => 'fecha DESC,correo,username'));
         foreach ($arr as $k => $value) {
             $arrResp['data'][$k]['nombre'] = $value['User']['correo'] . ' - ' . ' rol: ' . $value['User']['rol'];
             $arrResp['data'][$k]['id'] = $value['User']['id'];
         }
         echo json_encode($arrResp);
+        exit;
     }
 
 }

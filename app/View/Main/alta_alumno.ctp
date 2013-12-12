@@ -6,6 +6,7 @@
     var storeIdUsuarios = Ext.create('Ext.data.Store', {         
         storeId: 'storeIdUsuarios',              
         autoSync: true,
+        mode: 'remote',
         fields: ['id', 'nombre'],
         proxy: {
             type: 'ajax',
@@ -104,7 +105,14 @@
                         width       : 300,
                         fieldLabel  : 'Asignar Usuario:',
                         editable    : false,
-                        allowBlank  : false
+                        allowBlank  : false,
+                        listeners: {
+                            listeners: {
+                                beforequery: function(qe){
+                                    delete qe.combo.lastQuery;                                    
+                                }
+                            }
+                        }
                        
                     }
 
@@ -123,7 +131,7 @@
                     if( combo_id_usuario.getValue() == null || 
                         combo_id_usuario.getValue() == 0    || 
                         combo_id_usuario.getValue() == ''){
-                        
+                        userAdmin_flag  = true;
                         Ext.Ajax.request({
                             url: GLOBAL_PATH + 'Users/add',
                             method: 'GET',                                   
@@ -131,6 +139,7 @@
                             success: function(response){    
                                 temp = new Function(response.responseText);
                                 temp();
+                                userAdmin_flag  = false;
                             },  
                             failure: function(response){
                                 console.log("error: " + response.responseText);
@@ -151,14 +160,14 @@
                                 alumnos.load();	                   
 	                    }	                     
                         });
-                         }
+                    }
                     else{
                         Ext.Msg.alert('Error', 'Debe llenar los datos del formulario');
                     }                 
-                    }         		
-                }
-            ]
-        });
+                }         		
+            }
+        ]
+    });
 
-        vtnAltaAlumno.add(form);
-        vtnAltaAlumno.doLayout();
+    vtnAltaAlumno.add(form);
+    vtnAltaAlumno.doLayout();

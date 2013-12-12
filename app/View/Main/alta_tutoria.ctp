@@ -18,7 +18,7 @@ vtnAltaTutoria=Ext.create('Ext.window.Window', {
 	closeAction	: 'destroy',
 	maximizable	:false,
 	constrain	:true,
-	animateTarget: this,	
+	animateTarget: this	
 });
 
 
