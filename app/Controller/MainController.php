@@ -415,5 +415,6 @@ class MainController extends AppController {
 
         exit;
     }
+    function alta_datos(){}
 
 }
