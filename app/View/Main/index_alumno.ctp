@@ -35,6 +35,8 @@
 
     //Ext.require(['*']);   
     Ext.onReady(function(){   
+        
+        
         var viewport = new Ext.Viewport({
             layout: "border",
             border: false,
@@ -45,7 +47,7 @@
                     region: "north",
                     id : "toolbar-area",
                     xtype: 'panel',
-                    title: 'Bienvenido Administrador: <?php echo  CakeSession::read('Auth.User.username')?>',
+                    title: 'Bienvenido Alumno: <?php echo  CakeSession::read('Auth.User.username')?>',
                     html: ["<a href='<?php echo $this->html->url("/users/logout"); ?>'>Cerrar Sesión</a>"],
                     height: 30,
                     tools:[{

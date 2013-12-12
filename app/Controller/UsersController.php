@@ -27,7 +27,7 @@ class UsersController extends AppController {
     public function login() {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {                
-                if($this->Auth->user('activo')== 1){                
+                if($this->Auth->user('activo')== 1){    
                     echo '{"success" : true}';
                     exit;
                 }
