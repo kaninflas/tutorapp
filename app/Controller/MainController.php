@@ -475,5 +475,20 @@ class MainController extends AppController {
         echo json_encode($arrResp);
         exit;
     }
+    function tutorias_alumnos($id_alumno){
+        $id=$this->Alumnos->find("all", array(
+            'conditions' => array(
+                "id_usuario =".$id_alumno
+            )
+        ));        
+        $id=$id[0]['Alumnos']['id'];
+        $registrosTutorias = $this->Tutorias->hechas($id);
+        $arrResp = $registrosTutorias;
+        foreach ($registrosTutorias as $key => $value) {
+            $arrResp['items'][] = $value['Tutorias'];
+        }
+        print_r(json_encode($arrResp));
+        exit;
+    }
 
 }
