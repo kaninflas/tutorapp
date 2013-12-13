@@ -300,10 +300,10 @@
 <div id="centerTab" class="x-hide-display">
     <div id="img-wrapp">
     <?php
-        echo $this->Html->image('Logopoli.png', array('id'=> 'logopoli'));
-        echo $this->Html->image('logo.png'    , array('id'=> 'tutorapplogo'));
+        echo $this->Html->image('Logopoli.png', array('id'=> 'logopoli', 'width'=>564, 'height'=>186));
+        echo $this->Html->image('logo.png'    , array('id'=> 'tutorapplogo', 'width'=>170, 'height'=>170));
         echo "<h1>TutorApp<br>Sistema Institucional para Tutorías</h1>";
-        echo $this->Html->image('unipollo.png', array('id'=> 'unipollo'));
+        echo $this->Html->image('unipollo.png', array('id'=> 'unipollo', 'width'=>300, 'height'=>320));
     ?>
     </div>
 </div>

@@ -26,8 +26,9 @@ h1{
     text-align: center;    
 }
 #img-wrapp{
-    width: 735px;
+    height: 100%;
     margin: auto;
+    width: 735px;
 }
 #logopoli{
     
