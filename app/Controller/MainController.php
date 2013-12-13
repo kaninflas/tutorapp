@@ -16,7 +16,7 @@
  */
 class MainController extends AppController {
 
-//     /* Modelos que usa la BD */
+    /* Modelos que usa la BD */
     var $uses = array(
         'User',
         'Alumnos',
@@ -26,6 +26,12 @@ class MainController extends AppController {
         'Tutorias',
         'DatosAlumno'
     );
+    
+    public $helpers = array(
+        'Html',
+        'Session'
+    );
+
 
     public function beforeFilter() {
         parent::beforeFilter();
