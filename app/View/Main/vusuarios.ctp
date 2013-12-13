@@ -59,7 +59,7 @@
             {
                 header      : 'Tipo Usuario',  
                 dataIndex   : 'rol',  
-                width       :  150,  
+                width       :  100,  
                 editor: {
                     xtype: 'combobox',
                     store: storeRoles,
@@ -121,12 +121,12 @@
                 {
                     header      : 'E-mail',  
                     dataIndex   : 'correo', 
-                    width       :  250              
+                    width       :  230              
                 },
                 {
                     header      : 'Fecha de registro',  
                     dataIndex   : 'fecha',  
-                    width       :   200               
+                    width       :   150               
                 },
                 {
                     header      : 'Estatus',  

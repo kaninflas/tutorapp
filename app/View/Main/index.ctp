@@ -262,8 +262,8 @@
                                                                         id              :'main',
                                                                         deferredRender  : false,
                                                                         activeTab       : 0,
-                                                                        minWidth        : 1024,
-                                                                        maxWidth        : 3200,
+                                                                        minWidth        : '100%',
+                                                                        maxWidth        : '100%',
                                                                         items           : 
                                                                             [
                                                                             {
@@ -298,6 +298,13 @@
 
 </script>
 <div id="centerTab" class="x-hide-display">
-    Hola mundito
+    <div id="img-wrapp">
+    <?php
+        echo $this->Html->image('Logopoli.png', array('id'=> 'logopoli'));
+        echo $this->Html->image('logo.png'    , array('id'=> 'tutorapplogo'));
+        echo "<h1>TutorApp<br>Sistema Institucional para Tutorías</h1>";
+        echo $this->Html->image('unipollo.png', array('id'=> 'unipollo'));
+    ?>
+    </div>
 </div>
 <div id="div-content"  style="display:none;"></div>

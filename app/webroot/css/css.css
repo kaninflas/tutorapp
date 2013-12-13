@@ -20,4 +20,24 @@
     background-image: url('ext/shared/icons/fam/templates.png');
 }
 
+h1{
+    color: darkorange;
+    font-family: arial;    
+    text-align: center;    
+}
+#img-wrapp{
+    width: 735px;
+    margin: auto;
+}
+#logopoli{
+    
+}
+#tutorapplogo{
+    
+}
+#unipollo{
+    margin:0 0 0 260px;
+    width: 300px;
+}
+
 
