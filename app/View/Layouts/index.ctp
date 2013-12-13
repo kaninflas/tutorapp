@@ -38,22 +38,15 @@ $description = __d('cake_dev', 'TutorApp');
         echo $this->fetch('meta');
         echo $this->fetch('css');
         echo $this->fetch('script');
-
-
+        
         echo $this->Html->meta('icon',$this->Html->url('/img/logo.png'));
-
-       /* echo $this->Html->css('ext/shared/example');
-        echo $this->Html->css('ext/shared/ux/portal');
-        echo $this->Html->css('ext/shared/ux/GroupTabPanel*/
-        echo $this->Html->css('ext/ext-theme-neptune/ext-theme-neptune-all-debug');
+        echo $this->Html->css('ext/ext-theme-neptune/ext-theme-neptune-all');
         echo $this->Html->css('css');
 
-        echo $this->Html->script('ext/ext-all-debug');
+        echo $this->Html->script('ext/ext-all');
         echo $this->Html->script('ext/ext-theme-neptune/build/ext-theme-neptune');
         
-      //  echo $this->Html->script('ext/shared/examples.js');
         echo $this->Html->script('js');
-
         ?> 
 
         <script>
@@ -66,7 +59,6 @@ $description = __d('cake_dev', 'TutorApp');
                 enabled:true,
                 paths:{         
                     'Ext.ux':  GLOBAL_PATH + 'js/ext/src/ux/'
-                   // 'Ext.app': GLOBAL_PATH + 'js/ext/classes/'
                 }
             });
         </script>       

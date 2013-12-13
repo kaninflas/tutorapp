@@ -27,10 +27,6 @@ class MainController extends AppController {
         'DatosAlumno'
     );
     
-    public $helpers = array(
-        'Html',
-        'Session'
-    );
 
 
     public function beforeFilter() {
