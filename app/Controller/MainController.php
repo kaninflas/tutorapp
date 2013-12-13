@@ -31,10 +31,8 @@ class MainController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        if ($this->action == 'index') {
-            if ($this->Auth->user('rol') != 'admin') {
+        if ($this->action == 'index' || $this->action == '' || $this->action == null ) {
                 $this->redirect('index_' . $this->Auth->user('rol'));
-            }
         }
     }
 
@@ -43,7 +41,7 @@ class MainController extends AppController {
      * @return object    
      * @access public      
      */
-    function index() {
+    function index_admin() {
         $this->layout = '';
     }
 

@@ -42,7 +42,7 @@ class UsersController extends AppController {
         $this->layout = (!isset($_GET["Layout"]))? 'index' : '';
         
         if($this->Auth->loggedIn()){
-            $this->render('/Main/index');
+            $this->render('/Main/index_'.$this->Auth->user('rol'));
         }
     }
 
